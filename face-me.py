@@ -11,14 +11,17 @@ import boto3
 
 import Jetson.GPIO as GPIO
 
+from dotenv import load_dotenv
 from multiprocessing import Queue
 from uuid import uuid4
 from awscrt import io, mqtt, auth, http
 from awsiot import mqtt_connection_builder
 from botocore.exceptions import ClientError
 
-iot_endpoint = ''
-bucket_name = 'face-me-ingestion-bucket'
+load_dotenv()
+
+iot_endpoint = os.environ.get("iot_endpoint")
+bucket_name = os.environ.get("bucket_name")
 
 s3_client = boto3.client('s3', 'us-east-1')
 
