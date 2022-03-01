@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import 'source-map-support/register';
 import * as cdk from 'aws-cdk-lib';
-import { CloudFormationStack } from '../lib/cloud_formation-stack';
+import { FaceMeStack } from '../lib/face_me-stack';
 
 const app = new cdk.App();
 new CloudFormationStack(app, 'CloudFormationStack', {
