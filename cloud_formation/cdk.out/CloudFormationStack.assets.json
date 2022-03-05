@@ -1,0 +1,19 @@
+{
+  "version": "16.0.0",
+  "files": {
+    "d50e5f93b1afa8c5a5778ff8383e1a71a2dbd5524d364b4e9bbd449e79122873": {
+      "source": {
+        "path": "CloudFormationStack.template.json",
+        "packaging": "file"
+      },
+      "destinations": {
+        "current_account-current_region": {
+          "bucketName": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}",
+          "objectKey": "d50e5f93b1afa8c5a5778ff8383e1a71a2dbd5524d364b4e9bbd449e79122873.json",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-file-publishing-role-${AWS::AccountId}-${AWS::Region}"
+        }
+      }
+    }
+  },
+  "dockerImages": {}
+}
