@@ -7,7 +7,23 @@
  *  Or, setup a callback function on libgpiod to record and stream to kinesis (since we don't want an infinite stream)
  */
 
+#include <cstring>
+#include <chrono>
+#include "KinesisVideoProducer.h"
+#include <fstream>
+#include <vector>
+#include <map>
+#include <mutex>
+#include <thread>
+#include <condition_variable>
+#include <atomic>
+#include <queue>
+
 #include <iostream>
+
+using namespace std;
+using namespace std::chrono;
+//using namespace com::amazonaws::kinesis::video;
 
 int main() {
     std::cout << "Hello, World!" << std::endl;
