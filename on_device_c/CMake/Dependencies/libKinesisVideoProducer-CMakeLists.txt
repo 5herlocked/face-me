@@ -1,0 +1,16 @@
+cmake_minimum_required(VERSION 3.0)
+
+project(libKinesisVideoProducer-download NONE)
+
+include(ExternalProject)
+
+ExternalProject_Add(libKinesisVideoProducer
+    GIT_REPOSITORY      https://github.com/awslabs/amazon-kinesis-video-streams-producer-sdk-cpp.git
+    GIT_TAG             00ba9cfc3f1835adad1a626f2c86ec082b8bfbac
+    SOURCE_DIR          "${CMAKE_CURRENT_BINARY_DIR}/KinesisVideoProducer-src"
+    BINARY_DIR          "${CMAKE_CURRENT_BINARY_DIR}/KinesisVideoProducer-build"
+    CONFIGURE_COMMAND   ""
+    BUILD_COMMAND       ""
+    INSTALL_COMMAND     ""
+    TEST_COMMAND        ""
+)
