@@ -361,5 +361,5 @@ doc/api/
 .flutter-plugins
 .flutter-plugins-dependencies
 
-.dev.env
+*.env
 
