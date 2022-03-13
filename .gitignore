@@ -1,4 +1,6 @@
-*.env### VisualStudioCode template
+*.env
+
+### VisualStudioCode template
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
