@@ -7,27 +7,27 @@
         "file": "tree.json"
       }
     },
-    "CloudFormationStack.assets": {
+    "FaceMeStack.assets": {
       "type": "cdk:asset-manifest",
       "properties": {
-        "file": "CloudFormationStack.assets.json",
+        "file": "FaceMeStack.assets.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
       }
     },
-    "CloudFormationStack": {
+    "FaceMeStack": {
       "type": "aws:cloudformation:stack",
       "environment": "aws://unknown-account/unknown-region",
       "properties": {
-        "templateFile": "CloudFormationStack.template.json",
+        "templateFile": "FaceMeStack.template.json",
         "validateOnSynth": false,
         "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-${AWS::Region}",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-${AWS::Region}",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/d50e5f93b1afa8c5a5778ff8383e1a71a2dbd5524d364b4e9bbd449e79122873.json",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/9f6f118b1d71c23b05f2e56ce68267bdfa2965e948711af7d51583753053ebe4.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
         "additionalDependencies": [
-          "CloudFormationStack.assets"
+          "FaceMeStack.assets"
         ],
         "lookupRole": {
           "arn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-lookup-role-${AWS::AccountId}-${AWS::Region}",
@@ -36,35 +36,53 @@
         }
       },
       "dependencies": [
-        "CloudFormationStack.assets"
+        "FaceMeStack.assets"
       ],
       "metadata": {
-        "/CloudFormationStack/CDKMetadata/Default": [
+        "/FaceMeStack/FaceMeThing": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "FaceMeThing"
+          }
+        ],
+        "/FaceMeStack/FaceMeLambdaFunction/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "FaceMeLambdaFunctionServiceRole07DCB1B9"
+          }
+        ],
+        "/FaceMeStack/FaceMeLambdaFunction/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "FaceMeLambdaFunction4D2FD3D2"
+          }
+        ],
+        "/FaceMeStack/CDKMetadata/Default": [
           {
             "type": "aws:cdk:logicalId",
             "data": "CDKMetadata"
           }
         ],
-        "/CloudFormationStack/CDKMetadata/Condition": [
+        "/FaceMeStack/CDKMetadata/Condition": [
           {
             "type": "aws:cdk:logicalId",
             "data": "CDKMetadataAvailable"
           }
         ],
-        "/CloudFormationStack/BootstrapVersion": [
+        "/FaceMeStack/BootstrapVersion": [
           {
             "type": "aws:cdk:logicalId",
             "data": "BootstrapVersion"
           }
         ],
-        "/CloudFormationStack/CheckBootstrapVersion": [
+        "/FaceMeStack/CheckBootstrapVersion": [
           {
             "type": "aws:cdk:logicalId",
             "data": "CheckBootstrapVersion"
           }
         ]
       },
-      "displayName": "CloudFormationStack"
+      "displayName": "FaceMeStack"
     }
   }
 }
