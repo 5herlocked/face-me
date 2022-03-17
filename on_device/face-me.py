@@ -25,6 +25,7 @@ bucket_name = os.environ.get("bucket_name")
 
 s3_client = boto3.client('s3', 'us-east-1')
 
+internal_comms = Queue()
 message_queue = Queue()
 stop = False
 
