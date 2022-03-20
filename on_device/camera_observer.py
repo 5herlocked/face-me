@@ -29,9 +29,6 @@ class Camera:
         self.vs.stop()
         pass
 
-    def release_camera_lock(self):
-        pass
-
 
 def motion_detection(video_stream, event_queue):
     back_sub = cv2.createBackgroundSubtractorKNN()
