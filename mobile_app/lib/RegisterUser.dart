@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class RegisterUserPage extends StatefulWidget {
-    RegisterUserPage({Key? key, required this.title}) : super(key: key);
+    RegisterUserPage({Key? key}) : super(key: key);
 
     @override
     _RegisterUserPageState createState() => _RegisterUserPageState();
@@ -18,8 +18,8 @@ class _RegisterUserPageState extends State<RegisterUserPage> {
                 child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                        TextBox(),
-                        TextBox(),
+                        TextInput(),
+                        TextInput(),
                         Button()
                     ]
                 )
