@@ -1,0 +1,283 @@
+# this is an auto generated file. This will be overwritten
+subscription OnCreateAccountOwner {
+  onCreateAccountOwner {
+    id
+    firstName
+    lastName
+    displayName
+    email
+    verifiedImage
+    registeredUsers {
+      items {
+        id
+        firstName
+        lastName
+        displayName
+        verifiedImage
+        createdAt
+        updatedAt
+        accountOwnerRegisteredUsersId
+        registeredUserAccOwnerId
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateAccountOwner {
+  onUpdateAccountOwner {
+    id
+    firstName
+    lastName
+    displayName
+    email
+    verifiedImage
+    registeredUsers {
+      items {
+        id
+        firstName
+        lastName
+        displayName
+        verifiedImage
+        createdAt
+        updatedAt
+        accountOwnerRegisteredUsersId
+        registeredUserAccOwnerId
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteAccountOwner {
+  onDeleteAccountOwner {
+    id
+    firstName
+    lastName
+    displayName
+    email
+    verifiedImage
+    registeredUsers {
+      items {
+        id
+        firstName
+        lastName
+        displayName
+        verifiedImage
+        createdAt
+        updatedAt
+        accountOwnerRegisteredUsersId
+        registeredUserAccOwnerId
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnCreateRegisteredUser {
+  onCreateRegisteredUser {
+    id
+    firstName
+    lastName
+    displayName
+    verifiedImage
+    accOwner {
+      id
+      firstName
+      lastName
+      displayName
+      email
+      verifiedImage
+      registeredUsers {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+    accountOwnerRegisteredUsersId
+    registeredUserAccOwnerId
+  }
+}
+subscription OnUpdateRegisteredUser {
+  onUpdateRegisteredUser {
+    id
+    firstName
+    lastName
+    displayName
+    verifiedImage
+    accOwner {
+      id
+      firstName
+      lastName
+      displayName
+      email
+      verifiedImage
+      registeredUsers {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+    accountOwnerRegisteredUsersId
+    registeredUserAccOwnerId
+  }
+}
+subscription OnDeleteRegisteredUser {
+  onDeleteRegisteredUser {
+    id
+    firstName
+    lastName
+    displayName
+    verifiedImage
+    accOwner {
+      id
+      firstName
+      lastName
+      displayName
+      email
+      verifiedImage
+      registeredUsers {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+    accountOwnerRegisteredUsersId
+    registeredUserAccOwnerId
+  }
+}
+subscription OnCreateAccessEvents {
+  onCreateAccessEvents {
+    id
+    authUser {
+      id
+      firstName
+      lastName
+      displayName
+      verifiedImage
+      accOwner {
+        id
+        firstName
+        lastName
+        displayName
+        email
+        verifiedImage
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+      accountOwnerRegisteredUsersId
+      registeredUserAccOwnerId
+    }
+    primaryUser {
+      id
+      firstName
+      lastName
+      displayName
+      email
+      verifiedImage
+      registeredUsers {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    exactTime
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateAccessEvents {
+  onUpdateAccessEvents {
+    id
+    authUser {
+      id
+      firstName
+      lastName
+      displayName
+      verifiedImage
+      accOwner {
+        id
+        firstName
+        lastName
+        displayName
+        email
+        verifiedImage
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+      accountOwnerRegisteredUsersId
+      registeredUserAccOwnerId
+    }
+    primaryUser {
+      id
+      firstName
+      lastName
+      displayName
+      email
+      verifiedImage
+      registeredUsers {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    exactTime
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteAccessEvents {
+  onDeleteAccessEvents {
+    id
+    authUser {
+      id
+      firstName
+      lastName
+      displayName
+      verifiedImage
+      accOwner {
+        id
+        firstName
+        lastName
+        displayName
+        email
+        verifiedImage
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+      accountOwnerRegisteredUsersId
+      registeredUserAccOwnerId
+    }
+    primaryUser {
+      id
+      firstName
+      lastName
+      displayName
+      email
+      verifiedImage
+      registeredUsers {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    exactTime
+    createdAt
+    updatedAt
+  }
+}

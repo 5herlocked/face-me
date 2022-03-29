@@ -1,0 +1,183 @@
+# this is an auto generated file. This will be overwritten
+query GetAccountOwner($id: ID!) {
+  getAccountOwner(id: $id) {
+    id
+    firstName
+    lastName
+    displayName
+    email
+    verifiedImage
+    registeredUsers {
+      items {
+        id
+        firstName
+        lastName
+        displayName
+        verifiedImage
+        createdAt
+        updatedAt
+        accountOwnerRegisteredUsersId
+        registeredUserAccOwnerId
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+query ListAccountOwners(
+  $filter: ModelAccountOwnerFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listAccountOwners(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      firstName
+      lastName
+      displayName
+      email
+      verifiedImage
+      registeredUsers {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query GetRegisteredUser($id: ID!) {
+  getRegisteredUser(id: $id) {
+    id
+    firstName
+    lastName
+    displayName
+    verifiedImage
+    accOwner {
+      id
+      firstName
+      lastName
+      displayName
+      email
+      verifiedImage
+      registeredUsers {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+    accountOwnerRegisteredUsersId
+    registeredUserAccOwnerId
+  }
+}
+query ListRegisteredUsers(
+  $filter: ModelRegisteredUserFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listRegisteredUsers(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      firstName
+      lastName
+      displayName
+      verifiedImage
+      accOwner {
+        id
+        firstName
+        lastName
+        displayName
+        email
+        verifiedImage
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+      accountOwnerRegisteredUsersId
+      registeredUserAccOwnerId
+    }
+    nextToken
+  }
+}
+query GetAccessEvents($id: ID!) {
+  getAccessEvents(id: $id) {
+    id
+    authUser {
+      id
+      firstName
+      lastName
+      displayName
+      verifiedImage
+      accOwner {
+        id
+        firstName
+        lastName
+        displayName
+        email
+        verifiedImage
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+      accountOwnerRegisteredUsersId
+      registeredUserAccOwnerId
+    }
+    primaryUser {
+      id
+      firstName
+      lastName
+      displayName
+      email
+      verifiedImage
+      registeredUsers {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    exactTime
+    createdAt
+    updatedAt
+  }
+}
+query ListAccessEvents(
+  $filter: ModelAccessEventsFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listAccessEvents(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      authUser {
+        id
+        firstName
+        lastName
+        displayName
+        verifiedImage
+        createdAt
+        updatedAt
+        accountOwnerRegisteredUsersId
+        registeredUserAccOwnerId
+      }
+      primaryUser {
+        id
+        firstName
+        lastName
+        displayName
+        email
+        verifiedImage
+        createdAt
+        updatedAt
+      }
+      exactTime
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}

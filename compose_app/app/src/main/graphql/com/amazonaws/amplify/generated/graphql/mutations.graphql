@@ -1,0 +1,310 @@
+# this is an auto generated file. This will be overwritten
+mutation CreateAccountOwner(
+  $input: CreateAccountOwnerInput!
+  $condition: ModelAccountOwnerConditionInput
+) {
+  createAccountOwner(input: $input, condition: $condition) {
+    id
+    firstName
+    lastName
+    displayName
+    email
+    verifiedImage
+    registeredUsers {
+      items {
+        id
+        firstName
+        lastName
+        displayName
+        verifiedImage
+        createdAt
+        updatedAt
+        accountOwnerRegisteredUsersId
+        registeredUserAccOwnerId
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateAccountOwner(
+  $input: UpdateAccountOwnerInput!
+  $condition: ModelAccountOwnerConditionInput
+) {
+  updateAccountOwner(input: $input, condition: $condition) {
+    id
+    firstName
+    lastName
+    displayName
+    email
+    verifiedImage
+    registeredUsers {
+      items {
+        id
+        firstName
+        lastName
+        displayName
+        verifiedImage
+        createdAt
+        updatedAt
+        accountOwnerRegisteredUsersId
+        registeredUserAccOwnerId
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteAccountOwner(
+  $input: DeleteAccountOwnerInput!
+  $condition: ModelAccountOwnerConditionInput
+) {
+  deleteAccountOwner(input: $input, condition: $condition) {
+    id
+    firstName
+    lastName
+    displayName
+    email
+    verifiedImage
+    registeredUsers {
+      items {
+        id
+        firstName
+        lastName
+        displayName
+        verifiedImage
+        createdAt
+        updatedAt
+        accountOwnerRegisteredUsersId
+        registeredUserAccOwnerId
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation CreateRegisteredUser(
+  $input: CreateRegisteredUserInput!
+  $condition: ModelRegisteredUserConditionInput
+) {
+  createRegisteredUser(input: $input, condition: $condition) {
+    id
+    firstName
+    lastName
+    displayName
+    verifiedImage
+    accOwner {
+      id
+      firstName
+      lastName
+      displayName
+      email
+      verifiedImage
+      registeredUsers {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+    accountOwnerRegisteredUsersId
+    registeredUserAccOwnerId
+  }
+}
+mutation UpdateRegisteredUser(
+  $input: UpdateRegisteredUserInput!
+  $condition: ModelRegisteredUserConditionInput
+) {
+  updateRegisteredUser(input: $input, condition: $condition) {
+    id
+    firstName
+    lastName
+    displayName
+    verifiedImage
+    accOwner {
+      id
+      firstName
+      lastName
+      displayName
+      email
+      verifiedImage
+      registeredUsers {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+    accountOwnerRegisteredUsersId
+    registeredUserAccOwnerId
+  }
+}
+mutation DeleteRegisteredUser(
+  $input: DeleteRegisteredUserInput!
+  $condition: ModelRegisteredUserConditionInput
+) {
+  deleteRegisteredUser(input: $input, condition: $condition) {
+    id
+    firstName
+    lastName
+    displayName
+    verifiedImage
+    accOwner {
+      id
+      firstName
+      lastName
+      displayName
+      email
+      verifiedImage
+      registeredUsers {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+    accountOwnerRegisteredUsersId
+    registeredUserAccOwnerId
+  }
+}
+mutation CreateAccessEvents(
+  $input: CreateAccessEventsInput!
+  $condition: ModelAccessEventsConditionInput
+) {
+  createAccessEvents(input: $input, condition: $condition) {
+    id
+    authUser {
+      id
+      firstName
+      lastName
+      displayName
+      verifiedImage
+      accOwner {
+        id
+        firstName
+        lastName
+        displayName
+        email
+        verifiedImage
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+      accountOwnerRegisteredUsersId
+      registeredUserAccOwnerId
+    }
+    primaryUser {
+      id
+      firstName
+      lastName
+      displayName
+      email
+      verifiedImage
+      registeredUsers {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    exactTime
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateAccessEvents(
+  $input: UpdateAccessEventsInput!
+  $condition: ModelAccessEventsConditionInput
+) {
+  updateAccessEvents(input: $input, condition: $condition) {
+    id
+    authUser {
+      id
+      firstName
+      lastName
+      displayName
+      verifiedImage
+      accOwner {
+        id
+        firstName
+        lastName
+        displayName
+        email
+        verifiedImage
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+      accountOwnerRegisteredUsersId
+      registeredUserAccOwnerId
+    }
+    primaryUser {
+      id
+      firstName
+      lastName
+      displayName
+      email
+      verifiedImage
+      registeredUsers {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    exactTime
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteAccessEvents(
+  $input: DeleteAccessEventsInput!
+  $condition: ModelAccessEventsConditionInput
+) {
+  deleteAccessEvents(input: $input, condition: $condition) {
+    id
+    authUser {
+      id
+      firstName
+      lastName
+      displayName
+      verifiedImage
+      accOwner {
+        id
+        firstName
+        lastName
+        displayName
+        email
+        verifiedImage
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+      accountOwnerRegisteredUsersId
+      registeredUserAccOwnerId
+    }
+    primaryUser {
+      id
+      firstName
+      lastName
+      displayName
+      email
+      verifiedImage
+      registeredUsers {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    exactTime
+    createdAt
+    updatedAt
+  }
+}

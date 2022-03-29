@@ -1,0 +1,11 @@
+{
+  "AppSyncApiName": "facemeapp",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authfacemeappf5253412",
+      "Outputs.UserPoolId"
+    ]
+  }
+}
