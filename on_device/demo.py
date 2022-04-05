@@ -8,6 +8,7 @@ import sys
 import threading
 import cv2
 import boto3
+from dotenv import load_dotenv
 
 from multiprocessing import Queue
 from uuid import uuid4
@@ -16,10 +17,19 @@ from awsiot import mqtt_connection_builder
 from botocore.exceptions import ClientError
 from prompt_toolkit import prompt
 
+load_dotenv()
+
 iot_endpoint = 'a2lbvrveroeze3-ats.iot.us-east-1.amazonaws.com'
 bucket_name = 'jetson-ingestion-bucket'
 
-s3_client = boto3.client('s3', 'us-east-1')
+load_dotenv(".env")
+
+s3_client = boto3.client(
+    's3',
+    region_name='us-east-1',
+    aws_access_key_id=os.environ.get("AWS_ACCESS_KEY_ID"),
+    aws_secret_access_key=os.environ.get("AWS_SECRET_KEY")
+)
 
 message_queue = Queue()
 
