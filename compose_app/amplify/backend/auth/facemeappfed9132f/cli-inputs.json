@@ -1,10 +1,10 @@
 {
   "version": "1",
   "cognitoConfig": {
-    "identityPoolName": "facemeappf5253412_identitypool_f5253412",
+    "identityPoolName": "facemeappfed9132f_identitypool_fed9132f",
     "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "facemef5253412",
-    "userPoolName": "facemeappf5253412_userpool_f5253412",
+    "resourceNameTruncated": "facemefed9132f",
+    "userPoolName": "facemeappfed9132f_userpool_fed9132f",
     "autoVerifiedAttributes": [
       "email"
     ],
@@ -31,15 +31,16 @@
     "userpoolClientReadAttributes": [
       "email"
     ],
-    "userpoolClientLambdaRole": "facemef5253412_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "facemefed9132f_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "sharedId": "f5253412",
-    "resourceName": "facemeappf5253412",
+    "sharedId": "fed9132f",
+    "resourceName": "facemeappfed9132f",
     "authSelections": "identityPoolAndUserPool",
     "useDefault": "default",
     "usernameAttributes": [
-      "email, phone_number"
+      "email"
     ],
+    "triggers": {},
     "userPoolGroupList": [],
     "serviceName": "Cognito",
     "usernameCaseSensitive": false,

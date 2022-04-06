@@ -1,51 +1,4 @@
 # this is an auto generated file. This will be overwritten
-query GetAccountOwner($id: ID!) {
-  getAccountOwner(id: $id) {
-    id
-    firstName
-    lastName
-    displayName
-    email
-    verifiedImage
-    registeredUsers {
-      items {
-        id
-        displayName
-        verifiedImage
-        createdAt
-        updatedAt
-        accountOwnerRegisteredUsersId
-      }
-      nextToken
-    }
-    createdAt
-    updatedAt
-    owner
-  }
-}
-query ListAccountOwners(
-  $filter: ModelAccountOwnerFilterInput
-  $limit: Int
-  $nextToken: String
-) {
-  listAccountOwners(filter: $filter, limit: $limit, nextToken: $nextToken) {
-    items {
-      id
-      firstName
-      lastName
-      displayName
-      email
-      verifiedImage
-      registeredUsers {
-        nextToken
-      }
-      createdAt
-      updatedAt
-      owner
-    }
-    nextToken
-  }
-}
 query GetRegisteredUser($id: ID!) {
   getRegisteredUser(id: $id) {
     id
@@ -59,6 +12,9 @@ query GetRegisteredUser($id: ID!) {
       email
       verifiedImage
       registeredUsers {
+        nextToken
+      }
+      events {
         nextToken
       }
       createdAt
@@ -130,12 +86,17 @@ query GetAccessEvents($id: ID!) {
       registeredUsers {
         nextToken
       }
+      events {
+        nextToken
+      }
       createdAt
       updatedAt
       owner
     }
     createdAt
     updatedAt
+    accountOwnerEventsId
+    accessEventsAuthUserId
   }
 }
 query ListAccessEvents(
@@ -167,6 +128,68 @@ query ListAccessEvents(
       }
       createdAt
       updatedAt
+      accountOwnerEventsId
+      accessEventsAuthUserId
+    }
+    nextToken
+  }
+}
+query GetAccountOwner($id: ID!) {
+  getAccountOwner(id: $id) {
+    id
+    firstName
+    lastName
+    displayName
+    email
+    verifiedImage
+    registeredUsers {
+      items {
+        id
+        displayName
+        verifiedImage
+        createdAt
+        updatedAt
+        accountOwnerRegisteredUsersId
+      }
+      nextToken
+    }
+    events {
+      items {
+        id
+        createdAt
+        updatedAt
+        accountOwnerEventsId
+        accessEventsAuthUserId
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+    owner
+  }
+}
+query ListAccountOwners(
+  $filter: ModelAccountOwnerFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listAccountOwners(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      firstName
+      lastName
+      displayName
+      email
+      verifiedImage
+      registeredUsers {
+        nextToken
+      }
+      events {
+        nextToken
+      }
+      createdAt
+      updatedAt
+      owner
     }
     nextToken
   }

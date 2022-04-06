@@ -39,6 +39,7 @@ public final class AccountOwner implements Model {
   private final @ModelField(targetType="AWSEmail", isRequired = true) String email;
   private final @ModelField(targetType="AWSURL", isRequired = true) String verifiedImage;
   private final @ModelField(targetType="RegisteredUser") @HasMany(associatedWith = "accOwner", type = RegisteredUser.class) List<RegisteredUser> registeredUsers = null;
+  private final @ModelField(targetType="AccessEvents") @HasMany(associatedWith = "primaryUser", type = AccessEvents.class) List<AccessEvents> events = null;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime createdAt;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime updatedAt;
   public String getId() {
@@ -67,6 +68,10 @@ public final class AccountOwner implements Model {
   
   public List<RegisteredUser> getRegisteredUsers() {
       return registeredUsers;
+  }
+  
+  public List<AccessEvents> getEvents() {
+      return events;
   }
   
   public Temporal.DateTime getCreatedAt() {

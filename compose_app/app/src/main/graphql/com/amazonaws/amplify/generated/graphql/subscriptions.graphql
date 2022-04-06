@@ -1,76 +1,4 @@
 # this is an auto generated file. This will be overwritten
-subscription OnCreateAccountOwner($owner: String) {
-  onCreateAccountOwner(owner: $owner) {
-    id
-    firstName
-    lastName
-    displayName
-    email
-    verifiedImage
-    registeredUsers {
-      items {
-        id
-        displayName
-        verifiedImage
-        createdAt
-        updatedAt
-        accountOwnerRegisteredUsersId
-      }
-      nextToken
-    }
-    createdAt
-    updatedAt
-    owner
-  }
-}
-subscription OnUpdateAccountOwner($owner: String) {
-  onUpdateAccountOwner(owner: $owner) {
-    id
-    firstName
-    lastName
-    displayName
-    email
-    verifiedImage
-    registeredUsers {
-      items {
-        id
-        displayName
-        verifiedImage
-        createdAt
-        updatedAt
-        accountOwnerRegisteredUsersId
-      }
-      nextToken
-    }
-    createdAt
-    updatedAt
-    owner
-  }
-}
-subscription OnDeleteAccountOwner($owner: String) {
-  onDeleteAccountOwner(owner: $owner) {
-    id
-    firstName
-    lastName
-    displayName
-    email
-    verifiedImage
-    registeredUsers {
-      items {
-        id
-        displayName
-        verifiedImage
-        createdAt
-        updatedAt
-        accountOwnerRegisteredUsersId
-      }
-      nextToken
-    }
-    createdAt
-    updatedAt
-    owner
-  }
-}
 subscription OnCreateRegisteredUser {
   onCreateRegisteredUser {
     id
@@ -84,6 +12,9 @@ subscription OnCreateRegisteredUser {
       email
       verifiedImage
       registeredUsers {
+        nextToken
+      }
+      events {
         nextToken
       }
       createdAt
@@ -110,6 +41,9 @@ subscription OnUpdateRegisteredUser {
       registeredUsers {
         nextToken
       }
+      events {
+        nextToken
+      }
       createdAt
       updatedAt
       owner
@@ -132,6 +66,9 @@ subscription OnDeleteRegisteredUser {
       email
       verifiedImage
       registeredUsers {
+        nextToken
+      }
+      events {
         nextToken
       }
       createdAt
@@ -175,12 +112,17 @@ subscription OnCreateAccessEvents {
       registeredUsers {
         nextToken
       }
+      events {
+        nextToken
+      }
       createdAt
       updatedAt
       owner
     }
     createdAt
     updatedAt
+    accountOwnerEventsId
+    accessEventsAuthUserId
   }
 }
 subscription OnUpdateAccessEvents {
@@ -215,12 +157,17 @@ subscription OnUpdateAccessEvents {
       registeredUsers {
         nextToken
       }
+      events {
+        nextToken
+      }
       createdAt
       updatedAt
       owner
     }
     createdAt
     updatedAt
+    accountOwnerEventsId
+    accessEventsAuthUserId
   }
 }
 subscription OnDeleteAccessEvents {
@@ -255,11 +202,118 @@ subscription OnDeleteAccessEvents {
       registeredUsers {
         nextToken
       }
+      events {
+        nextToken
+      }
       createdAt
       updatedAt
       owner
     }
     createdAt
     updatedAt
+    accountOwnerEventsId
+    accessEventsAuthUserId
+  }
+}
+subscription OnCreateAccountOwner($owner: String) {
+  onCreateAccountOwner(owner: $owner) {
+    id
+    firstName
+    lastName
+    displayName
+    email
+    verifiedImage
+    registeredUsers {
+      items {
+        id
+        displayName
+        verifiedImage
+        createdAt
+        updatedAt
+        accountOwnerRegisteredUsersId
+      }
+      nextToken
+    }
+    events {
+      items {
+        id
+        createdAt
+        updatedAt
+        accountOwnerEventsId
+        accessEventsAuthUserId
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+    owner
+  }
+}
+subscription OnUpdateAccountOwner($owner: String) {
+  onUpdateAccountOwner(owner: $owner) {
+    id
+    firstName
+    lastName
+    displayName
+    email
+    verifiedImage
+    registeredUsers {
+      items {
+        id
+        displayName
+        verifiedImage
+        createdAt
+        updatedAt
+        accountOwnerRegisteredUsersId
+      }
+      nextToken
+    }
+    events {
+      items {
+        id
+        createdAt
+        updatedAt
+        accountOwnerEventsId
+        accessEventsAuthUserId
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+    owner
+  }
+}
+subscription OnDeleteAccountOwner($owner: String) {
+  onDeleteAccountOwner(owner: $owner) {
+    id
+    firstName
+    lastName
+    displayName
+    email
+    verifiedImage
+    registeredUsers {
+      items {
+        id
+        displayName
+        verifiedImage
+        createdAt
+        updatedAt
+        accountOwnerRegisteredUsersId
+      }
+      nextToken
+    }
+    events {
+      items {
+        id
+        createdAt
+        updatedAt
+        accountOwnerEventsId
+        accessEventsAuthUserId
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+    owner
   }
 }

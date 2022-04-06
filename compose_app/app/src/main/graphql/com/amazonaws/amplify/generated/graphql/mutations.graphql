@@ -1,85 +1,4 @@
 # this is an auto generated file. This will be overwritten
-mutation CreateAccountOwner(
-  $input: CreateAccountOwnerInput!
-  $condition: ModelAccountOwnerConditionInput
-) {
-  createAccountOwner(input: $input, condition: $condition) {
-    id
-    firstName
-    lastName
-    displayName
-    email
-    verifiedImage
-    registeredUsers {
-      items {
-        id
-        displayName
-        verifiedImage
-        createdAt
-        updatedAt
-        accountOwnerRegisteredUsersId
-      }
-      nextToken
-    }
-    createdAt
-    updatedAt
-    owner
-  }
-}
-mutation UpdateAccountOwner(
-  $input: UpdateAccountOwnerInput!
-  $condition: ModelAccountOwnerConditionInput
-) {
-  updateAccountOwner(input: $input, condition: $condition) {
-    id
-    firstName
-    lastName
-    displayName
-    email
-    verifiedImage
-    registeredUsers {
-      items {
-        id
-        displayName
-        verifiedImage
-        createdAt
-        updatedAt
-        accountOwnerRegisteredUsersId
-      }
-      nextToken
-    }
-    createdAt
-    updatedAt
-    owner
-  }
-}
-mutation DeleteAccountOwner(
-  $input: DeleteAccountOwnerInput!
-  $condition: ModelAccountOwnerConditionInput
-) {
-  deleteAccountOwner(input: $input, condition: $condition) {
-    id
-    firstName
-    lastName
-    displayName
-    email
-    verifiedImage
-    registeredUsers {
-      items {
-        id
-        displayName
-        verifiedImage
-        createdAt
-        updatedAt
-        accountOwnerRegisteredUsersId
-      }
-      nextToken
-    }
-    createdAt
-    updatedAt
-    owner
-  }
-}
 mutation CreateRegisteredUser(
   $input: CreateRegisteredUserInput!
   $condition: ModelRegisteredUserConditionInput
@@ -96,6 +15,9 @@ mutation CreateRegisteredUser(
       email
       verifiedImage
       registeredUsers {
+        nextToken
+      }
+      events {
         nextToken
       }
       createdAt
@@ -125,6 +47,9 @@ mutation UpdateRegisteredUser(
       registeredUsers {
         nextToken
       }
+      events {
+        nextToken
+      }
       createdAt
       updatedAt
       owner
@@ -150,6 +75,9 @@ mutation DeleteRegisteredUser(
       email
       verifiedImage
       registeredUsers {
+        nextToken
+      }
+      events {
         nextToken
       }
       createdAt
@@ -196,12 +124,17 @@ mutation CreateAccessEvents(
       registeredUsers {
         nextToken
       }
+      events {
+        nextToken
+      }
       createdAt
       updatedAt
       owner
     }
     createdAt
     updatedAt
+    accountOwnerEventsId
+    accessEventsAuthUserId
   }
 }
 mutation UpdateAccessEvents(
@@ -239,12 +172,17 @@ mutation UpdateAccessEvents(
       registeredUsers {
         nextToken
       }
+      events {
+        nextToken
+      }
       createdAt
       updatedAt
       owner
     }
     createdAt
     updatedAt
+    accountOwnerEventsId
+    accessEventsAuthUserId
   }
 }
 mutation DeleteAccessEvents(
@@ -282,11 +220,127 @@ mutation DeleteAccessEvents(
       registeredUsers {
         nextToken
       }
+      events {
+        nextToken
+      }
       createdAt
       updatedAt
       owner
     }
     createdAt
     updatedAt
+    accountOwnerEventsId
+    accessEventsAuthUserId
+  }
+}
+mutation CreateAccountOwner(
+  $input: CreateAccountOwnerInput!
+  $condition: ModelAccountOwnerConditionInput
+) {
+  createAccountOwner(input: $input, condition: $condition) {
+    id
+    firstName
+    lastName
+    displayName
+    email
+    verifiedImage
+    registeredUsers {
+      items {
+        id
+        displayName
+        verifiedImage
+        createdAt
+        updatedAt
+        accountOwnerRegisteredUsersId
+      }
+      nextToken
+    }
+    events {
+      items {
+        id
+        createdAt
+        updatedAt
+        accountOwnerEventsId
+        accessEventsAuthUserId
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+    owner
+  }
+}
+mutation UpdateAccountOwner(
+  $input: UpdateAccountOwnerInput!
+  $condition: ModelAccountOwnerConditionInput
+) {
+  updateAccountOwner(input: $input, condition: $condition) {
+    id
+    firstName
+    lastName
+    displayName
+    email
+    verifiedImage
+    registeredUsers {
+      items {
+        id
+        displayName
+        verifiedImage
+        createdAt
+        updatedAt
+        accountOwnerRegisteredUsersId
+      }
+      nextToken
+    }
+    events {
+      items {
+        id
+        createdAt
+        updatedAt
+        accountOwnerEventsId
+        accessEventsAuthUserId
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+    owner
+  }
+}
+mutation DeleteAccountOwner(
+  $input: DeleteAccountOwnerInput!
+  $condition: ModelAccountOwnerConditionInput
+) {
+  deleteAccountOwner(input: $input, condition: $condition) {
+    id
+    firstName
+    lastName
+    displayName
+    email
+    verifiedImage
+    registeredUsers {
+      items {
+        id
+        displayName
+        verifiedImage
+        createdAt
+        updatedAt
+        accountOwnerRegisteredUsersId
+      }
+      nextToken
+    }
+    events {
+      items {
+        id
+        createdAt
+        updatedAt
+        accountOwnerEventsId
+        accessEventsAuthUserId
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+    owner
   }
 }

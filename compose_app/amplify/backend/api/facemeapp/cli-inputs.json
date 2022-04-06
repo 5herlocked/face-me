@@ -5,15 +5,13 @@
     "serviceName": "AppSync",
     "gqlSchemaPath": "C:\\Users\\camv7\\source\\school\\face-me\\compose_app\\amplify\\backend\\api\\facemeapp\\schema.graphql",
     "defaultAuthType": {
-      "mode": "AMAZON_COGNITO_USER_POOLS",
-      "cognitoUserPoolId": "authfacemeappf5253412"
+      "mode": "API_KEY",
+      "expirationTime": 7
     },
     "additionalAuthTypes": [
       {
-        "mode": "API_KEY",
-        "expirationTime": 300,
-        "apiKeyExpirationDate": "2023-01-22T23:48:17.833Z",
-        "keyDescription": ""
+        "mode": "AMAZON_COGNITO_USER_POOLS",
+        "cognitoUserPoolId": "authfacemeappfed9132f"
       }
     ]
   }
