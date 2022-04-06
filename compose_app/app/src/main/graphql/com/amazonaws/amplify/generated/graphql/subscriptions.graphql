@@ -1,6 +1,6 @@
 # this is an auto generated file. This will be overwritten
-subscription OnCreateAccountOwner {
-  onCreateAccountOwner {
+subscription OnCreateAccountOwner($owner: String) {
+  onCreateAccountOwner(owner: $owner) {
     id
     firstName
     lastName
@@ -10,23 +10,21 @@ subscription OnCreateAccountOwner {
     registeredUsers {
       items {
         id
-        firstName
-        lastName
         displayName
         verifiedImage
         createdAt
         updatedAt
         accountOwnerRegisteredUsersId
-        registeredUserAccOwnerId
       }
       nextToken
     }
     createdAt
     updatedAt
+    owner
   }
 }
-subscription OnUpdateAccountOwner {
-  onUpdateAccountOwner {
+subscription OnUpdateAccountOwner($owner: String) {
+  onUpdateAccountOwner(owner: $owner) {
     id
     firstName
     lastName
@@ -36,23 +34,21 @@ subscription OnUpdateAccountOwner {
     registeredUsers {
       items {
         id
-        firstName
-        lastName
         displayName
         verifiedImage
         createdAt
         updatedAt
         accountOwnerRegisteredUsersId
-        registeredUserAccOwnerId
       }
       nextToken
     }
     createdAt
     updatedAt
+    owner
   }
 }
-subscription OnDeleteAccountOwner {
-  onDeleteAccountOwner {
+subscription OnDeleteAccountOwner($owner: String) {
+  onDeleteAccountOwner(owner: $owner) {
     id
     firstName
     lastName
@@ -62,26 +58,22 @@ subscription OnDeleteAccountOwner {
     registeredUsers {
       items {
         id
-        firstName
-        lastName
         displayName
         verifiedImage
         createdAt
         updatedAt
         accountOwnerRegisteredUsersId
-        registeredUserAccOwnerId
       }
       nextToken
     }
     createdAt
     updatedAt
+    owner
   }
 }
 subscription OnCreateRegisteredUser {
   onCreateRegisteredUser {
     id
-    firstName
-    lastName
     displayName
     verifiedImage
     accOwner {
@@ -96,18 +88,16 @@ subscription OnCreateRegisteredUser {
       }
       createdAt
       updatedAt
+      owner
     }
     createdAt
     updatedAt
     accountOwnerRegisteredUsersId
-    registeredUserAccOwnerId
   }
 }
 subscription OnUpdateRegisteredUser {
   onUpdateRegisteredUser {
     id
-    firstName
-    lastName
     displayName
     verifiedImage
     accOwner {
@@ -122,18 +112,16 @@ subscription OnUpdateRegisteredUser {
       }
       createdAt
       updatedAt
+      owner
     }
     createdAt
     updatedAt
     accountOwnerRegisteredUsersId
-    registeredUserAccOwnerId
   }
 }
 subscription OnDeleteRegisteredUser {
   onDeleteRegisteredUser {
     id
-    firstName
-    lastName
     displayName
     verifiedImage
     accOwner {
@@ -148,11 +136,11 @@ subscription OnDeleteRegisteredUser {
       }
       createdAt
       updatedAt
+      owner
     }
     createdAt
     updatedAt
     accountOwnerRegisteredUsersId
-    registeredUserAccOwnerId
   }
 }
 subscription OnCreateAccessEvents {
@@ -160,8 +148,6 @@ subscription OnCreateAccessEvents {
     id
     authUser {
       id
-      firstName
-      lastName
       displayName
       verifiedImage
       accOwner {
@@ -173,11 +159,11 @@ subscription OnCreateAccessEvents {
         verifiedImage
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
       accountOwnerRegisteredUsersId
-      registeredUserAccOwnerId
     }
     primaryUser {
       id
@@ -191,8 +177,8 @@ subscription OnCreateAccessEvents {
       }
       createdAt
       updatedAt
+      owner
     }
-    exactTime
     createdAt
     updatedAt
   }
@@ -202,8 +188,6 @@ subscription OnUpdateAccessEvents {
     id
     authUser {
       id
-      firstName
-      lastName
       displayName
       verifiedImage
       accOwner {
@@ -215,11 +199,11 @@ subscription OnUpdateAccessEvents {
         verifiedImage
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
       accountOwnerRegisteredUsersId
-      registeredUserAccOwnerId
     }
     primaryUser {
       id
@@ -233,8 +217,8 @@ subscription OnUpdateAccessEvents {
       }
       createdAt
       updatedAt
+      owner
     }
-    exactTime
     createdAt
     updatedAt
   }
@@ -244,8 +228,6 @@ subscription OnDeleteAccessEvents {
     id
     authUser {
       id
-      firstName
-      lastName
       displayName
       verifiedImage
       accOwner {
@@ -257,11 +239,11 @@ subscription OnDeleteAccessEvents {
         verifiedImage
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
       accountOwnerRegisteredUsersId
-      registeredUserAccOwnerId
     }
     primaryUser {
       id
@@ -275,8 +257,8 @@ subscription OnDeleteAccessEvents {
       }
       createdAt
       updatedAt
+      owner
     }
-    exactTime
     createdAt
     updatedAt
   }

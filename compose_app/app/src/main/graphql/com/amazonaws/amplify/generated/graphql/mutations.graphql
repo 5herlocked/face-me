@@ -13,19 +13,17 @@ mutation CreateAccountOwner(
     registeredUsers {
       items {
         id
-        firstName
-        lastName
         displayName
         verifiedImage
         createdAt
         updatedAt
         accountOwnerRegisteredUsersId
-        registeredUserAccOwnerId
       }
       nextToken
     }
     createdAt
     updatedAt
+    owner
   }
 }
 mutation UpdateAccountOwner(
@@ -42,19 +40,17 @@ mutation UpdateAccountOwner(
     registeredUsers {
       items {
         id
-        firstName
-        lastName
         displayName
         verifiedImage
         createdAt
         updatedAt
         accountOwnerRegisteredUsersId
-        registeredUserAccOwnerId
       }
       nextToken
     }
     createdAt
     updatedAt
+    owner
   }
 }
 mutation DeleteAccountOwner(
@@ -71,19 +67,17 @@ mutation DeleteAccountOwner(
     registeredUsers {
       items {
         id
-        firstName
-        lastName
         displayName
         verifiedImage
         createdAt
         updatedAt
         accountOwnerRegisteredUsersId
-        registeredUserAccOwnerId
       }
       nextToken
     }
     createdAt
     updatedAt
+    owner
   }
 }
 mutation CreateRegisteredUser(
@@ -92,8 +86,6 @@ mutation CreateRegisteredUser(
 ) {
   createRegisteredUser(input: $input, condition: $condition) {
     id
-    firstName
-    lastName
     displayName
     verifiedImage
     accOwner {
@@ -108,11 +100,11 @@ mutation CreateRegisteredUser(
       }
       createdAt
       updatedAt
+      owner
     }
     createdAt
     updatedAt
     accountOwnerRegisteredUsersId
-    registeredUserAccOwnerId
   }
 }
 mutation UpdateRegisteredUser(
@@ -121,8 +113,6 @@ mutation UpdateRegisteredUser(
 ) {
   updateRegisteredUser(input: $input, condition: $condition) {
     id
-    firstName
-    lastName
     displayName
     verifiedImage
     accOwner {
@@ -137,11 +127,11 @@ mutation UpdateRegisteredUser(
       }
       createdAt
       updatedAt
+      owner
     }
     createdAt
     updatedAt
     accountOwnerRegisteredUsersId
-    registeredUserAccOwnerId
   }
 }
 mutation DeleteRegisteredUser(
@@ -150,8 +140,6 @@ mutation DeleteRegisteredUser(
 ) {
   deleteRegisteredUser(input: $input, condition: $condition) {
     id
-    firstName
-    lastName
     displayName
     verifiedImage
     accOwner {
@@ -166,11 +154,11 @@ mutation DeleteRegisteredUser(
       }
       createdAt
       updatedAt
+      owner
     }
     createdAt
     updatedAt
     accountOwnerRegisteredUsersId
-    registeredUserAccOwnerId
   }
 }
 mutation CreateAccessEvents(
@@ -181,8 +169,6 @@ mutation CreateAccessEvents(
     id
     authUser {
       id
-      firstName
-      lastName
       displayName
       verifiedImage
       accOwner {
@@ -194,11 +180,11 @@ mutation CreateAccessEvents(
         verifiedImage
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
       accountOwnerRegisteredUsersId
-      registeredUserAccOwnerId
     }
     primaryUser {
       id
@@ -212,8 +198,8 @@ mutation CreateAccessEvents(
       }
       createdAt
       updatedAt
+      owner
     }
-    exactTime
     createdAt
     updatedAt
   }
@@ -226,8 +212,6 @@ mutation UpdateAccessEvents(
     id
     authUser {
       id
-      firstName
-      lastName
       displayName
       verifiedImage
       accOwner {
@@ -239,11 +223,11 @@ mutation UpdateAccessEvents(
         verifiedImage
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
       accountOwnerRegisteredUsersId
-      registeredUserAccOwnerId
     }
     primaryUser {
       id
@@ -257,8 +241,8 @@ mutation UpdateAccessEvents(
       }
       createdAt
       updatedAt
+      owner
     }
-    exactTime
     createdAt
     updatedAt
   }
@@ -271,8 +255,6 @@ mutation DeleteAccessEvents(
     id
     authUser {
       id
-      firstName
-      lastName
       displayName
       verifiedImage
       accOwner {
@@ -284,11 +266,11 @@ mutation DeleteAccessEvents(
         verifiedImage
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
       accountOwnerRegisteredUsersId
-      registeredUserAccOwnerId
     }
     primaryUser {
       id
@@ -302,8 +284,8 @@ mutation DeleteAccessEvents(
       }
       createdAt
       updatedAt
+      owner
     }
-    exactTime
     createdAt
     updatedAt
   }
