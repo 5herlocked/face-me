@@ -5,4 +5,7 @@
     <string name="event_history">Event History</string>
     <string name="settings">Settings</string>
     <string name="load_error">Beep bop boop</string>
+    <string name="cd_open_navigation_drawer">Open navigation drawer</string>
+    <string name="home_tap_to_load_content">Tap to Load Content</string>
+    <string name="retry">Retry</string>
 </resources>

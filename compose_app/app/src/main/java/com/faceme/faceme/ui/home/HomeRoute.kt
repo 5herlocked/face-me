@@ -27,7 +27,7 @@ fun HomeRoute(
         onApprove = { homeViewModel.approveUser(it) },
         onReject = { homeViewModel.rejectUser(it) },
         onSelectUser = { homeViewModel.selectUser(it) },
-        onRefreshEvents = {homeViewModel.refreshEvents() },
+        onRefreshEvents = { homeViewModel.refreshEvents() },
         onErrorDismiss = { homeViewModel.errorShown(it) },
         onInteractWithFeed = { homeViewModel.interactedWithFeed() },
         onInteractWithEventDetails = { homeViewModel.interactWithEventDetails(it) },
