@@ -10,6 +10,7 @@ type AccountOwner @model @auth(rules: [{allow: owner}]) @aws_cognito_user_pools 
   email: AWSEmail!
   verifiedImage: AWSURL!
   registeredUsers: [RegisteredUser!] @hasMany
+  events: [AccessEvents!] @hasMany
 }
 
 type RegisteredUser @model {
@@ -21,6 +22,6 @@ type RegisteredUser @model {
 
 type AccessEvents @model {
   id: ID!
-  authUser: RegisteredUser!
-  primaryUser: AccountOwner!
+  authUser: RegisteredUser! @hasOne
+  primaryUser: AccountOwner! @belongsTo
 }
