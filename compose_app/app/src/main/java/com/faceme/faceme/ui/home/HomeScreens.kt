@@ -2,6 +2,7 @@ package com.faceme.faceme.ui.home
 
 import android.content.Context
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
+import android.provider.MediaStore
 import android.widget.Toast
 import androidx.compose.animation.Crossfade
 import androidx.compose.foundation.BorderStroke
@@ -77,6 +78,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.faceme.faceme.R
+import com.faceme.faceme.model.EventsFeed
+import com.faceme.faceme.ui.components.FaceMeSnackbarHost
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 
@@ -135,6 +138,36 @@ fun HomeFeedScreen(
             onReject = onReject,
 
         )
+    }
+}
+
+@Composable
+fun EventUserList(
+    eventsFeed: EventsFeed,
+    onSelectUser: (String) -> Unit,
+    onApprove: (String) -> Unit,
+    onReject: (String) -> Unit,
+    modifier: Modifier = Modifier,
+    contentPadding: PaddingValues = PaddingValues(0.dp),
+    state: LazyListState = rememberLazyListState()
+) {
+    LazyColumn(
+        modifier = modifier,
+        contentPadding = contentPadding,
+        state = state
+    ) {
+        item {
+            // camera feed or image here
+            VideoPlayer()
+        }
+
+        if (eventsFeed.allEvents.isNotEmpty()) {
+            item {
+                UsersListSection(
+                    eventsFeed.currentEvent
+                )
+            }
+        }
     }
 }
 
@@ -230,6 +263,17 @@ private fun HomeScreenWithList(
             // Once the message is displayed and dismissed, notify the ViewModel
             onErrorDismissState(errorMessage.id)
         }
+    }
+}
+
+@Composable
+fun FullScreenLoading() {
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .wrapContentSize(Alignment.Center)
+    ) {
+        CircularProgressIndicator()
     }
 }
 
