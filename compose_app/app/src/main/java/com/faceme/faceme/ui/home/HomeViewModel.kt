@@ -119,6 +119,7 @@ class HomeViewModel : ViewModel() {
     fun approveUser(userId: String) {
         viewModelScope.launch {
             // pass it to the method in Event
+            
         }
     }
 
@@ -128,6 +129,7 @@ class HomeViewModel : ViewModel() {
     fun rejectUser(userId: String) {
         viewModelScope.launch {
             // pass it to the method in Event
+
         }
     }
 
