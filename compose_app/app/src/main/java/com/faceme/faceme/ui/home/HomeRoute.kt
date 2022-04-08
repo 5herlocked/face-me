@@ -3,7 +3,6 @@ package com.faceme.faceme.ui.home
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.Scaffold
 import androidx.compose.material.ScaffoldState
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
@@ -53,7 +52,7 @@ fun HomeRoute(
 ) {
     val homeListLazyListState = rememberLazyListState()
     val eventDetailLazyListStates = when (uiState) {
-        is HomeUiState.HasEvents -> uiState.eventsFeed.allEvents
+        is HomeUiState.HasEvents -> uiState.homeScreenEvent.allEvents
         is HomeUiState.NoEvents -> emptyList()
     }.associate { event : Event ->
         key(event.id) {

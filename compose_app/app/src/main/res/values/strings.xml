@@ -8,4 +8,7 @@
     <string name="cd_open_navigation_drawer">Open navigation drawer</string>
     <string name="home_tap_to_load_content">Tap to Load Content</string>
     <string name="retry">Retry</string>
+    <string name="detected_users">Detected Users</string>
+    <string name="approve">Approve</string>
+    <string name="reject">Reject</string>
 </resources>
