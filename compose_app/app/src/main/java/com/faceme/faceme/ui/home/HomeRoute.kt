@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.key
+import com.amplifyframework.datastore.generated.model.RegisteredUser
 import com.faceme.faceme.model.Event
 
 @Composable
@@ -52,11 +53,11 @@ fun HomeRoute(
 ) {
     val homeListLazyListState = rememberLazyListState()
     val eventDetailLazyListStates = when (uiState) {
-        is HomeUiState.HasEvents -> uiState.homeScreenEvent.allEvents
+        is HomeUiState.HasEvents -> uiState.homeScreenEvent.detectedUsers
         is HomeUiState.NoEvents -> emptyList()
-    }.associate { event : Event ->
-        key(event.id) {
-            event.id to rememberLazyListState()
+    }.associate { user: RegisteredUser ->
+        key(user.id) {
+            user.id to rememberLazyListState()
         }
     }
 

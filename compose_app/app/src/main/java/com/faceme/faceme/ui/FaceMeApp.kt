@@ -1,12 +1,6 @@
 package com.faceme.faceme.ui
 
-import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.WindowInsetsSides
-import androidx.compose.foundation.layout.add
-import androidx.compose.foundation.layout.asPaddingValues
-import androidx.compose.foundation.layout.only
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.systemBars
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
@@ -60,7 +54,23 @@ fun FaceMeApp (
             // Only enable opening the drawer via gestures if the screen is not expanded
             gesturesEnabled = !isExpandedScreen
         ) {
-
+            Row(
+                Modifier.fillMaxSize()
+                    .statusBarsPadding()
+                    .windowInsetsPadding(
+                        WindowInsets.navigationBars.only(WindowInsetsSides.Horizontal + WindowInsetsSides.Top)
+                    )
+            ) {
+                if (isExpandedScreen) {
+                    AppNavRail(
+                        currentRoute = currentRoute,
+                        navigateToHome = navigationActions.navigateToHome,
+                        navigatetoEventHistory = navigationActions.navigateToEventHistory,
+                        navigateToUserList = navigationActions.navigateToUserList,
+                        navigateToSettings = navigationActions.navigateToSettings
+                    )
+                }
+            }
         }
     }
 }

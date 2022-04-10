@@ -1,10 +1,12 @@
 package com.faceme.faceme.ui.home
 
 import androidx.compose.animation.Crossfade
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Block
@@ -28,6 +30,9 @@ import com.faceme.faceme.R
 import com.faceme.faceme.model.HomeScreenEvent
 import com.faceme.faceme.ui.components.FaceMeSnackbarHost
 import com.faceme.faceme.ui.rememberContentPaddingForScreen
+import com.faceme.faceme.ui.utils.ApproveButton
+import com.faceme.faceme.ui.utils.RejectButton
+import com.faceme.faceme.ui.user_details.userDetails
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import kotlinx.coroutines.currentCoroutineContext
@@ -97,16 +102,34 @@ fun HomeFeedWithUserDetailsScreen(
                         stickyHeader {
                             val context = LocalContext.current
                             UserDetailTopBar(
-                                onApprove = onApprove(focusedUser.id),
-                                onReject = onReject(focusedUser.id),
+                                onApprove = { onApprove(focusedUser.id) },
+                                onReject = { onReject(focusedUser.id) },
                                 modifier = Modifier.fillMaxWidth().wrapContentWidth(Alignment.End)
                             )
 
-                            userDetails(focusedUser)
+                            this@LazyColumn.userDetails(focusedUser)
                         }
                     }
                 }
             }
+        }
+    }
+}
+
+@Composable
+fun UserDetailTopBar(
+    onApprove: () -> Unit,
+    onReject: () -> Unit,
+    modifier: Modifier = Modifier
+) {
+    Surface(
+        shape = RoundedCornerShape(8.dp),
+        border = BorderStroke(Dp.Hairline, MaterialTheme.colors.onSurface.copy(alpha = .6f)),
+        modifier = modifier.padding(end = 16.dp)
+    ) {
+        Row(Modifier.padding(horizontal = 8.dp)) {
+            ApproveButton(onClick = onApprove)
+            RejectButton(onClick = onReject)
         }
     }
 }
