@@ -96,6 +96,13 @@ fun HomeFeedWithUserDetailsScreen(
                     ) {
                         stickyHeader {
                             val context = LocalContext.current
+                            UserDetailTopBar(
+                                onApprove = onApprove(focusedUser.id),
+                                onReject = onReject(focusedUser.id),
+                                modifier = Modifier.fillMaxWidth().wrapContentWidth(Alignment.End)
+                            )
+
+                            userDetails(focusedUser)
                         }
                     }
                 }
