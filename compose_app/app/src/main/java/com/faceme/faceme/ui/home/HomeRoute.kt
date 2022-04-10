@@ -97,7 +97,6 @@ fun HomeRoute(
                 onErrorDismiss = onErrorDismiss,
                 openDrawer = openDrawer,
                 homeListLazyListState = homeListLazyListState,
-                eventDetailLazyListState = eventDetailLazyListStates,
                 scaffoldState = scaffoldState
             )
         }

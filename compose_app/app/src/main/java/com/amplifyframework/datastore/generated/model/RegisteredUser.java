@@ -55,7 +55,7 @@ public final class RegisteredUser implements Model {
       return updatedAt;
   }
   
-  private RegisteredUser(String id, String displayName, String verifiedImage, AccountOwner accOwner) {
+  public RegisteredUser(String id, String displayName, String verifiedImage, AccountOwner accOwner) {
     this.id = id;
     this.displayName = displayName;
     this.verifiedImage = verifiedImage;

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "83966603188",
+    "project_id": "faceme-5971d",
+    "storage_bucket": "faceme-5971d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:83966603188:android:a8f3a5da27b79ddc084ce1",
+        "android_client_info": {
+          "package_name": "com.faceme.faceme"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "83966603188-java00jhljjvim9ch4v8pe2htt11fiit.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDBl0zVwta5Z8S4ZDaafLz10vy0OZYb3KU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "83966603188-java00jhljjvim9ch4v8pe2htt11fiit.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -82,7 +82,7 @@ public final class AccountOwner implements Model {
       return updatedAt;
   }
   
-  private AccountOwner(String id, String firstName, String lastName, String displayName, String email, String verifiedImage) {
+  public AccountOwner(String id, String firstName, String lastName, String displayName, String email, String verifiedImage) {
     this.id = id;
     this.firstName = firstName;
     this.lastName = lastName;

@@ -9,6 +9,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.faceme.faceme.ui.components.AppNavRail
 import com.faceme.faceme.ui.theme.FaceMeTheme
 import com.faceme.faceme.utils.WindowSize
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
@@ -65,7 +66,7 @@ fun FaceMeApp (
                     AppNavRail(
                         currentRoute = currentRoute,
                         navigateToHome = navigationActions.navigateToHome,
-                        navigatetoEventHistory = navigationActions.navigateToEventHistory,
+                        navigateToEventHistory = navigationActions.navigateToEventHistory,
                         navigateToUserList = navigationActions.navigateToUserList,
                         navigateToSettings = navigationActions.navigateToSettings
                     )

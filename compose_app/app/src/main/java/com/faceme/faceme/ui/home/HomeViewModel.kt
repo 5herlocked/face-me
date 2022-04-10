@@ -93,7 +93,7 @@ class HomeViewModel : ViewModel() {
         viewModelState.update { it.copy(isLoading = true) }
 
         viewModelScope.launch {
-            val result = getEvents() // TODO: Replace this with a cloud call
+            val result = getEvents()
 
             viewModelState.update {
                 when(result) {
@@ -114,7 +114,7 @@ class HomeViewModel : ViewModel() {
     }
 
     private fun getEvents(): Result<HomeScreenEvent> {
-        TODO("NOT IMPLEMENTED")
+        TODO("Implement cloud call")
     }
 
     /*

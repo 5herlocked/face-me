@@ -5,7 +5,9 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListState
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -23,16 +25,19 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.amplifyframework.datastore.generated.model.AccountOwner
 import com.amplifyframework.datastore.generated.model.RegisteredUser
 import com.faceme.faceme.R
 import com.faceme.faceme.model.HomeScreenEvent
 import com.faceme.faceme.ui.components.FaceMeSnackbarHost
 import com.faceme.faceme.ui.rememberContentPaddingForScreen
+import com.faceme.faceme.ui.theme.FaceMeTheme
+import com.faceme.faceme.ui.user_details.userDetails
 import com.faceme.faceme.ui.utils.ApproveButton
 import com.faceme.faceme.ui.utils.RejectButton
-import com.faceme.faceme.ui.user_details.userDetails
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import kotlinx.coroutines.currentCoroutineContext
@@ -104,7 +109,9 @@ fun HomeFeedWithUserDetailsScreen(
                             UserDetailTopBar(
                                 onApprove = { onApprove(focusedUser.id) },
                                 onReject = { onReject(focusedUser.id) },
-                                modifier = Modifier.fillMaxWidth().wrapContentWidth(Alignment.End)
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .wrapContentWidth(Alignment.End)
                             )
 
                             this@LazyColumn.userDetails(focusedUser)
@@ -161,7 +168,6 @@ fun HomeFeedScreen(
     onErrorDismiss: (Long) -> Unit,
     openDrawer: () -> Unit,
     homeListLazyListState: LazyListState,
-    eventDetailLazyListState: Map<String, LazyListState>,
     scaffoldState: ScaffoldState,
     modifier: Modifier = Modifier,
 ) {
@@ -208,9 +214,15 @@ fun EventUserList(
     ) {
         item {
             // camera feed or image here
-            VideoPlayer()
         }
 
+        item {
+            Text(
+                modifier = Modifier.padding(16.dp),
+                text = stringResource(R.string.detected_users),
+                style = MaterialTheme.typography.subtitle1
+            )
+        }
         if (homeScreenEvent.detectedUsers.isNotEmpty()) {
             item {
                 UsersListSection(
@@ -232,31 +244,24 @@ fun UsersListSection(
     navigateToUser: (String) -> Unit
 ) {
     Column {
-        Text(
-            modifier = Modifier.padding(16.dp),
-            text = stringResource(R.string.detected_users),
-            style = MaterialTheme.typography.subtitle1
-        )
-
-        LazyRow(modifier = Modifier.padding(end = 16.dp)) {
-            items(detectedUsers) { user ->
-                DetectedUser(
-                    user,
-                    onApprove,
-                    onReject,
-                    navigateToUser,
-                    Modifier.padding(start = 16.dp, bottom = 16.dp)
-                )
-            }
+        detectedUsers.forEach { user ->
+            DetectedUser(
+                user,
+                onApprove,
+                onReject,
+                navigateToUser,
+            )
+            UserListDivider()
         }
-
-        UserListDivider()
     }
 }
 
 @Composable
 fun UserListDivider() {
-    TODO("Not yet implemented")
+    Divider(
+        modifier = Modifier.padding(horizontal = 14.dp),
+        color = MaterialTheme.colors.onSurface.copy(alpha = 0.08f)
+    )
 }
 
 @Composable
@@ -268,40 +273,53 @@ fun DetectedUser(
     modifier: Modifier = Modifier
 ) {
     Card(
-        shape = MaterialTheme.shapes.medium,
-        modifier = modifier.size(280.dp, 240.dp)
+        shape = MaterialTheme.shapes.small,
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(8.dp)
     ) {
-        Column(modifier = Modifier.clickable(onClick = {navigateToUser(user.id)})) {
-            Column(modifier = Modifier.padding(16.dp)) {
-                Text(
-                    text = user.displayName,
-                    style = MaterialTheme.typography.h6,
-                    maxLines = 1,
-                    overflow = TextOverflow.Ellipsis
-                )
-                Row(modifier = Modifier.padding(16.dp)) {
-                    Button(
-                        onClick = { onApprove(user.id) },
-                    ) {
-                        // Accept button
-                        Icon(
-                            Icons.Filled.Check,
-                            contentDescription = stringResource(R.string.approve),
-                            modifier = modifier.size(ButtonDefaults.IconSize),
-                        )
-                        Spacer(modifier.size(ButtonDefaults.IconSpacing))
-                        Text(stringResource(id = R.string.approve))
-                    }
-                    Button(onClick = { onReject(user.id) }) {
-                        // Reject button
-                        Icon(
-                            Icons.Filled.Block,
-                            contentDescription = stringResource(id = R.string.reject),
-                            modifier = modifier.size(ButtonDefaults.IconSize)
-                        )
-                        Spacer(modifier.size(ButtonDefaults.IconSpacing))
-                        Text(stringResource(id = R.string.reject))
-                    }
+        Row(
+            modifier = Modifier
+                .clickable(onClick = { navigateToUser(user.id) })
+                .padding(8.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Text(
+                text = user.displayName,
+                style = MaterialTheme.typography.h6,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
+                textAlign = TextAlign.Center
+            )
+            Row(
+                horizontalArrangement = Arrangement.End,
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Button(
+                    onClick = { onApprove(user.id) },
+                    modifier = Modifier.padding(bottom = 8.dp, start = 8.dp, end = 8.dp),
+                ) {
+                    // Accept button
+                    Icon(
+                        Icons.Filled.Check,
+                        contentDescription = stringResource(R.string.approve),
+                        modifier = modifier.size(ButtonDefaults.IconSize),
+                    )
+                    Spacer(modifier.size(ButtonDefaults.IconSpacing))
+                    Text(stringResource(id = R.string.approve))
+                }
+                Button(
+                    onClick = { onReject(user.id) },
+                    modifier = Modifier.padding(bottom = 8.dp, start = 8.dp, end = 8.dp)
+                ) {
+                    // Reject button
+                    Icon(
+                        Icons.Filled.Block,
+                        contentDescription = stringResource(id = R.string.reject),
+                        modifier = modifier.size(ButtonDefaults.IconSize)
+                    )
+                    Spacer(modifier.size(ButtonDefaults.IconSpacing))
+                    Text(stringResource(id = R.string.reject))
                 }
             }
         }
@@ -355,7 +373,10 @@ private fun HomeScreenWithList(
                         if (uiState.errorMessages.isEmpty()) {
                             // no events, no errors, let the user refresh manually
 
-                            TextButton(onClick = onRefreshEvents, modifier = modifier.fillMaxSize()) {
+                            TextButton(
+                                onClick = onRefreshEvents,
+                                modifier = modifier.fillMaxSize()
+                            ) {
                                 Text(
                                     stringResource(id = R.string.home_tap_to_load_content),
                                     textAlign = TextAlign.Center
@@ -458,4 +479,61 @@ fun HomeTopAppbar(openDrawer: () -> Unit, elevation: Dp) {
         backgroundColor = MaterialTheme.colors.surface,
         elevation = elevation
     )
+}
+
+@Preview()
+@Composable
+fun PreviewHomeScreen() {
+    val accOwner = AccountOwner(
+        "000000000",
+        "Elaine",
+        "Hudson",
+        "Mrs. Hudson",
+        "test_acc_owner@gmail.com",
+        "https://picsum.photos/200/300"
+    )
+    val detectedUsers = listOf(
+        RegisteredUser(
+            "123456789",
+            "Sherlock",
+            "https://picsum.photos/200/300",
+            accOwner
+        ),
+        RegisteredUser(
+            "234567891",
+            "Wattson",
+            "https://picsum.photos/200/300",
+            accOwner
+        ),
+        RegisteredUser(
+            "345678912",
+            "Irene",
+            "https://picsum.photos/200/300",
+            accOwner
+        )
+    )
+    val media = "https://picsum.photos/200/300"
+    FaceMeTheme {
+        HomeFeedScreen(
+            uiState = HomeUiState.HasEvents(
+                homeScreenEvent = HomeScreenEvent(
+                    media = media,
+                    detectedUsers = detectedUsers
+                ),
+                selectedUser = null,
+                isUserOpen = false,
+                isLoading = false,
+                errorMessages = emptyList(),
+            ),
+            showTopAppBar = false,
+            onApprove = {},
+            onReject = {},
+            onSelectUser = {},
+            onRefreshEvents = { /*TODO*/ },
+            onErrorDismiss = {},
+            openDrawer = { /*TODO*/ },
+            homeListLazyListState = rememberLazyListState(),
+            scaffoldState = rememberScaffoldState()
+        )
+    }
 }
