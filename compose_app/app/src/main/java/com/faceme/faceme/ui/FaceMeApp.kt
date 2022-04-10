@@ -1,17 +1,24 @@
 package com.faceme.faceme.ui
 
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.WindowInsetsSides
+import androidx.compose.foundation.layout.add
+import androidx.compose.foundation.layout.asPaddingValues
+import androidx.compose.foundation.layout.only
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.systemBars
 import androidx.compose.material.*
 import androidx.compose.runtime.*
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.faceme.faceme.ui.theme.FaceMeTheme
 import com.faceme.faceme.utils.WindowSize
-import kotlinx.coroutines.launch
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
-import androidx.compose.foundation.layout.padding
-import androidx.compose.ui.unit.dp
+import kotlinx.coroutines.launch
 
 @Composable
 fun FaceMeApp (
@@ -57,6 +64,16 @@ fun FaceMeApp (
         }
     }
 }
+
+/**
+ * Determine the content padding to apply to the different screens of the app
+ */
+@Composable
+fun rememberContentPaddingForScreen(additionalTop: Dp = 0.dp) =
+    WindowInsets.systemBars
+        .only(WindowInsetsSides.Bottom)
+        .add(WindowInsets(top = additionalTop))
+        .asPaddingValues()
 
 /*
  * Determine the drawer state to pass to modal

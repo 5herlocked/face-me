@@ -76,7 +76,7 @@ fun HomeRoute(
                 onInteractWithDetail = onInteractWithEventDetails,
                 openDrawer = openDrawer,
                 homeListLazyListState = homeListLazyListState,
-                eventDetailLazyListState = eventDetailLazyListStates,
+                userDetailLazyListStates = eventDetailLazyListStates,
                 scaffoldState = scaffoldState
             )
 

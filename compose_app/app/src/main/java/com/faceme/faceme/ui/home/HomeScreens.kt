@@ -1,5 +1,6 @@
 package com.faceme.faceme.ui.home
 
+import androidx.compose.animation.Crossfade
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -9,13 +10,13 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Block
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Navigation
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberUpdatedState
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.composed
+import androidx.compose.ui.input.pointer.PointerEventPass
+import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
@@ -26,8 +27,11 @@ import com.amplifyframework.datastore.generated.model.RegisteredUser
 import com.faceme.faceme.R
 import com.faceme.faceme.model.HomeScreenEvent
 import com.faceme.faceme.ui.components.FaceMeSnackbarHost
+import com.faceme.faceme.ui.rememberContentPaddingForScreen
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
+import kotlinx.coroutines.currentCoroutineContext
+import kotlinx.coroutines.isActive
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -43,12 +47,78 @@ fun HomeFeedWithUserDetailsScreen(
     onInteractWithDetail: (String) -> Unit,
     openDrawer: () -> Unit,
     homeListLazyListState: LazyListState,
-    eventDetailLazyListState: Map<String, LazyListState>,
+    userDetailLazyListStates: Map<String, LazyListState>,
     scaffoldState: ScaffoldState,
     modifier: Modifier = Modifier,
 ) {
+    HomeScreenWithList(
+        uiState = uiState,
+        showTopAppBar = showTopAppBar,
+        onApprove = onApprove,
+        onReject = onReject,
+        onRefreshEvents = onRefreshEvents,
+        onErrorDismiss = onErrorDismiss,
+        openDrawer = openDrawer,
+        homeListLazyListState = homeListLazyListState,
+        scaffoldState = scaffoldState
+    ) { hasEventsUiState, contentModifier ->
+        val contentPadding = rememberContentPaddingForScreen(additionalTop = 8.dp)
+        Row(contentModifier) {
+            EventUserList(
+                homeScreenEvent = hasEventsUiState.homeScreenEvent,
+                onSelectUser = onSelectUser,
+                onApprove = onApprove,
+                onReject = onReject,
+                modifier = Modifier
+                    .width(334.dp)
+                    .notifyInput(onInteractWithFeed)
+                    .imePadding(), // add padding for the on-screen keyboard
+                state = homeListLazyListState,
+            )
 
+            // Crossfade between different users
+            Crossfade(targetState = hasEventsUiState.selectedUser) { focusedUser ->
+                val detailLazyListState by derivedStateOf {
+                    userDetailLazyListStates.getValue(focusedUser!!.id)
+                }
+
+                key(focusedUser!!.id) {
+                    LazyColumn(
+                        state = detailLazyListState,
+                        contentPadding = contentPadding,
+                        modifier = Modifier
+                            .padding(horizontal = 16.dp)
+                            .fillMaxSize()
+                            .notifyInput {
+                                onInteractWithDetail(focusedUser.id)
+                            }
+                            .imePadding()
+                    ) {
+                        stickyHeader {
+                            val context = LocalContext.current
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
+
+/**
+ * A [Modifier] that tracks all input, and calls [block] every time input is received.
+ */
+private fun Modifier.notifyInput(block: () -> Unit): Modifier =
+    composed {
+        val blockState = rememberUpdatedState(block)
+        pointerInput(Unit) {
+            while (currentCoroutineContext().isActive) {
+                awaitPointerEventScope {
+                    awaitPointerEvent(PointerEventPass.Initial)
+                    blockState.value()
+                }
+            }
+        }
+    }
 
 @Composable
 fun HomeFeedScreen(
@@ -82,7 +152,11 @@ fun HomeFeedScreen(
             onSelectUser = onSelectUser,
             onApprove = onApprove,
             onReject = onReject,
-
+            contentPadding = rememberContentPaddingForScreen(
+                additionalTop = if (showTopAppBar) 0.dp else 8.dp
+            ),
+            modifier = contentModifier,
+            state = homeListLazyListState
         )
     }
 }
