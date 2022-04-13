@@ -57,6 +57,8 @@ fun EventHistoryRoute(
 
             EventHistoryWithEventDetailsScreen(
                 uiState = uiState,
+                eventHistoryLazyListState = eventHistoryLazyListState,
+                eventDetailLazyListStates = eventDetailLazyListStates,
                 showTopAppBar = !isExpandedScreen,
                 onInteractWithHistory = onInteractWithHistory,
                 onInteractWithEventDetails = onInteractWithEventDetails,
@@ -71,7 +73,13 @@ fun EventHistoryRoute(
 
         EventHistoryScreenType.History -> {
             EventHistoryScreen(
-
+                uiState = uiState,
+                showTopAppBar = !isExpandedScreen,
+                onInteractWithHistory = onInteractWithHistory,
+                onInteractWithEventDetails = onInteractWithEventDetails,
+                openDrawer = openDrawer,
+                scaffoldState = scaffoldState,
+                eventHistoryLazyListState = eventHistoryLazyListState
             )
         }
     }

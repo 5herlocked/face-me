@@ -10,6 +10,7 @@ import androidx.compose.material.NavigationRail
 import androidx.compose.material.Surface
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Group
+import androidx.compose.material.icons.filled.History
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.List
 import androidx.compose.runtime.Composable
@@ -75,7 +76,7 @@ fun AppNavRail(
         )
         Spacer(modifier = Modifier.height(16.dp))
         NavRailIcon(
-            icon = Icons.Filled.List,
+            icon = Icons.Filled.History,
             contentDescription = stringResource(R.string.cd_event_history),
             isSelected = currentRoute == FaceMeDestinations.EVENT_HISTORY,
             action = navigateToEventHistory

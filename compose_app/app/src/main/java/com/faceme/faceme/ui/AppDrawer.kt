@@ -3,10 +3,7 @@ package com.faceme.faceme.ui
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Group
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.List
-import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -51,7 +48,7 @@ fun AppDrawer(
             }
         )
         DrawerButton(
-            icon = Icons.Filled.List,
+            icon = Icons.Filled.History,
             label = stringResource(id = R.string.event_history),
             isSelected = currentRoute == FaceMeDestinations.EVENT_HISTORY,
             action = {
