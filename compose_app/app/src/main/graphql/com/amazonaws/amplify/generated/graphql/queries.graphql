@@ -1,139 +1,4 @@
 # this is an auto generated file. This will be overwritten
-query GetRegisteredUser($id: ID!) {
-  getRegisteredUser(id: $id) {
-    id
-    displayName
-    verifiedImage
-    accOwner {
-      id
-      firstName
-      lastName
-      displayName
-      email
-      verifiedImage
-      registeredUsers {
-        nextToken
-      }
-      events {
-        nextToken
-      }
-      createdAt
-      updatedAt
-      owner
-    }
-    createdAt
-    updatedAt
-    accountOwnerRegisteredUsersId
-  }
-}
-query ListRegisteredUsers(
-  $filter: ModelRegisteredUserFilterInput
-  $limit: Int
-  $nextToken: String
-) {
-  listRegisteredUsers(filter: $filter, limit: $limit, nextToken: $nextToken) {
-    items {
-      id
-      displayName
-      verifiedImage
-      accOwner {
-        id
-        firstName
-        lastName
-        displayName
-        email
-        verifiedImage
-        createdAt
-        updatedAt
-        owner
-      }
-      createdAt
-      updatedAt
-      accountOwnerRegisteredUsersId
-    }
-    nextToken
-  }
-}
-query GetAccessEvents($id: ID!) {
-  getAccessEvents(id: $id) {
-    id
-    authUser {
-      id
-      displayName
-      verifiedImage
-      accOwner {
-        id
-        firstName
-        lastName
-        displayName
-        email
-        verifiedImage
-        createdAt
-        updatedAt
-        owner
-      }
-      createdAt
-      updatedAt
-      accountOwnerRegisteredUsersId
-    }
-    primaryUser {
-      id
-      firstName
-      lastName
-      displayName
-      email
-      verifiedImage
-      registeredUsers {
-        nextToken
-      }
-      events {
-        nextToken
-      }
-      createdAt
-      updatedAt
-      owner
-    }
-    createdAt
-    updatedAt
-    accountOwnerEventsId
-    accessEventsAuthUserId
-  }
-}
-query ListAccessEvents(
-  $filter: ModelAccessEventsFilterInput
-  $limit: Int
-  $nextToken: String
-) {
-  listAccessEvents(filter: $filter, limit: $limit, nextToken: $nextToken) {
-    items {
-      id
-      authUser {
-        id
-        displayName
-        verifiedImage
-        createdAt
-        updatedAt
-        accountOwnerRegisteredUsersId
-      }
-      primaryUser {
-        id
-        firstName
-        lastName
-        displayName
-        email
-        verifiedImage
-        createdAt
-        updatedAt
-        owner
-      }
-      createdAt
-      updatedAt
-      accountOwnerEventsId
-      accessEventsAuthUserId
-    }
-    nextToken
-  }
-}
 query GetAccountOwner($id: ID!) {
   getAccountOwner(id: $id) {
     id
@@ -142,6 +7,7 @@ query GetAccountOwner($id: ID!) {
     displayName
     email
     verifiedImage
+    FCMToken
     registeredUsers {
       items {
         id
@@ -181,6 +47,7 @@ query ListAccountOwners(
       displayName
       email
       verifiedImage
+      FCMToken
       registeredUsers {
         nextToken
       }
@@ -190,6 +57,146 @@ query ListAccountOwners(
       createdAt
       updatedAt
       owner
+    }
+    nextToken
+  }
+}
+query GetRegisteredUser($id: ID!) {
+  getRegisteredUser(id: $id) {
+    id
+    displayName
+    verifiedImage
+    accOwner {
+      id
+      firstName
+      lastName
+      displayName
+      email
+      verifiedImage
+      FCMToken
+      registeredUsers {
+        nextToken
+      }
+      events {
+        nextToken
+      }
+      createdAt
+      updatedAt
+      owner
+    }
+    createdAt
+    updatedAt
+    accountOwnerRegisteredUsersId
+  }
+}
+query ListRegisteredUsers(
+  $filter: ModelRegisteredUserFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listRegisteredUsers(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      displayName
+      verifiedImage
+      accOwner {
+        id
+        firstName
+        lastName
+        displayName
+        email
+        verifiedImage
+        FCMToken
+        createdAt
+        updatedAt
+        owner
+      }
+      createdAt
+      updatedAt
+      accountOwnerRegisteredUsersId
+    }
+    nextToken
+  }
+}
+query GetAccessEvents($id: ID!) {
+  getAccessEvents(id: $id) {
+    id
+    authUser {
+      id
+      displayName
+      verifiedImage
+      accOwner {
+        id
+        firstName
+        lastName
+        displayName
+        email
+        verifiedImage
+        FCMToken
+        createdAt
+        updatedAt
+        owner
+      }
+      createdAt
+      updatedAt
+      accountOwnerRegisteredUsersId
+    }
+    primaryUser {
+      id
+      firstName
+      lastName
+      displayName
+      email
+      verifiedImage
+      FCMToken
+      registeredUsers {
+        nextToken
+      }
+      events {
+        nextToken
+      }
+      createdAt
+      updatedAt
+      owner
+    }
+    createdAt
+    updatedAt
+    accountOwnerEventsId
+    accessEventsAuthUserId
+  }
+}
+query ListAccessEvents(
+  $filter: ModelAccessEventsFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listAccessEvents(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      authUser {
+        id
+        displayName
+        verifiedImage
+        createdAt
+        updatedAt
+        accountOwnerRegisteredUsersId
+      }
+      primaryUser {
+        id
+        firstName
+        lastName
+        displayName
+        email
+        verifiedImage
+        FCMToken
+        createdAt
+        updatedAt
+        owner
+      }
+      createdAt
+      updatedAt
+      accountOwnerEventsId
+      accessEventsAuthUserId
     }
     nextToken
   }

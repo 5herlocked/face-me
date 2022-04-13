@@ -1,220 +1,4 @@
 # this is an auto generated file. This will be overwritten
-subscription OnCreateRegisteredUser {
-  onCreateRegisteredUser {
-    id
-    displayName
-    verifiedImage
-    accOwner {
-      id
-      firstName
-      lastName
-      displayName
-      email
-      verifiedImage
-      registeredUsers {
-        nextToken
-      }
-      events {
-        nextToken
-      }
-      createdAt
-      updatedAt
-      owner
-    }
-    createdAt
-    updatedAt
-    accountOwnerRegisteredUsersId
-  }
-}
-subscription OnUpdateRegisteredUser {
-  onUpdateRegisteredUser {
-    id
-    displayName
-    verifiedImage
-    accOwner {
-      id
-      firstName
-      lastName
-      displayName
-      email
-      verifiedImage
-      registeredUsers {
-        nextToken
-      }
-      events {
-        nextToken
-      }
-      createdAt
-      updatedAt
-      owner
-    }
-    createdAt
-    updatedAt
-    accountOwnerRegisteredUsersId
-  }
-}
-subscription OnDeleteRegisteredUser {
-  onDeleteRegisteredUser {
-    id
-    displayName
-    verifiedImage
-    accOwner {
-      id
-      firstName
-      lastName
-      displayName
-      email
-      verifiedImage
-      registeredUsers {
-        nextToken
-      }
-      events {
-        nextToken
-      }
-      createdAt
-      updatedAt
-      owner
-    }
-    createdAt
-    updatedAt
-    accountOwnerRegisteredUsersId
-  }
-}
-subscription OnCreateAccessEvents {
-  onCreateAccessEvents {
-    id
-    authUser {
-      id
-      displayName
-      verifiedImage
-      accOwner {
-        id
-        firstName
-        lastName
-        displayName
-        email
-        verifiedImage
-        createdAt
-        updatedAt
-        owner
-      }
-      createdAt
-      updatedAt
-      accountOwnerRegisteredUsersId
-    }
-    primaryUser {
-      id
-      firstName
-      lastName
-      displayName
-      email
-      verifiedImage
-      registeredUsers {
-        nextToken
-      }
-      events {
-        nextToken
-      }
-      createdAt
-      updatedAt
-      owner
-    }
-    createdAt
-    updatedAt
-    accountOwnerEventsId
-    accessEventsAuthUserId
-  }
-}
-subscription OnUpdateAccessEvents {
-  onUpdateAccessEvents {
-    id
-    authUser {
-      id
-      displayName
-      verifiedImage
-      accOwner {
-        id
-        firstName
-        lastName
-        displayName
-        email
-        verifiedImage
-        createdAt
-        updatedAt
-        owner
-      }
-      createdAt
-      updatedAt
-      accountOwnerRegisteredUsersId
-    }
-    primaryUser {
-      id
-      firstName
-      lastName
-      displayName
-      email
-      verifiedImage
-      registeredUsers {
-        nextToken
-      }
-      events {
-        nextToken
-      }
-      createdAt
-      updatedAt
-      owner
-    }
-    createdAt
-    updatedAt
-    accountOwnerEventsId
-    accessEventsAuthUserId
-  }
-}
-subscription OnDeleteAccessEvents {
-  onDeleteAccessEvents {
-    id
-    authUser {
-      id
-      displayName
-      verifiedImage
-      accOwner {
-        id
-        firstName
-        lastName
-        displayName
-        email
-        verifiedImage
-        createdAt
-        updatedAt
-        owner
-      }
-      createdAt
-      updatedAt
-      accountOwnerRegisteredUsersId
-    }
-    primaryUser {
-      id
-      firstName
-      lastName
-      displayName
-      email
-      verifiedImage
-      registeredUsers {
-        nextToken
-      }
-      events {
-        nextToken
-      }
-      createdAt
-      updatedAt
-      owner
-    }
-    createdAt
-    updatedAt
-    accountOwnerEventsId
-    accessEventsAuthUserId
-  }
-}
 subscription OnCreateAccountOwner($owner: String) {
   onCreateAccountOwner(owner: $owner) {
     id
@@ -223,6 +7,7 @@ subscription OnCreateAccountOwner($owner: String) {
     displayName
     email
     verifiedImage
+    FCMToken
     registeredUsers {
       items {
         id
@@ -257,6 +42,7 @@ subscription OnUpdateAccountOwner($owner: String) {
     displayName
     email
     verifiedImage
+    FCMToken
     registeredUsers {
       items {
         id
@@ -291,6 +77,7 @@ subscription OnDeleteAccountOwner($owner: String) {
     displayName
     email
     verifiedImage
+    FCMToken
     registeredUsers {
       items {
         id
@@ -315,5 +102,230 @@ subscription OnDeleteAccountOwner($owner: String) {
     createdAt
     updatedAt
     owner
+  }
+}
+subscription OnCreateRegisteredUser($accOwner: String) {
+  onCreateRegisteredUser(accOwner: $accOwner) {
+    id
+    displayName
+    verifiedImage
+    accOwner {
+      id
+      firstName
+      lastName
+      displayName
+      email
+      verifiedImage
+      FCMToken
+      registeredUsers {
+        nextToken
+      }
+      events {
+        nextToken
+      }
+      createdAt
+      updatedAt
+      owner
+    }
+    createdAt
+    updatedAt
+    accountOwnerRegisteredUsersId
+  }
+}
+subscription OnUpdateRegisteredUser($accOwner: String) {
+  onUpdateRegisteredUser(accOwner: $accOwner) {
+    id
+    displayName
+    verifiedImage
+    accOwner {
+      id
+      firstName
+      lastName
+      displayName
+      email
+      verifiedImage
+      FCMToken
+      registeredUsers {
+        nextToken
+      }
+      events {
+        nextToken
+      }
+      createdAt
+      updatedAt
+      owner
+    }
+    createdAt
+    updatedAt
+    accountOwnerRegisteredUsersId
+  }
+}
+subscription OnDeleteRegisteredUser($accOwner: String) {
+  onDeleteRegisteredUser(accOwner: $accOwner) {
+    id
+    displayName
+    verifiedImage
+    accOwner {
+      id
+      firstName
+      lastName
+      displayName
+      email
+      verifiedImage
+      FCMToken
+      registeredUsers {
+        nextToken
+      }
+      events {
+        nextToken
+      }
+      createdAt
+      updatedAt
+      owner
+    }
+    createdAt
+    updatedAt
+    accountOwnerRegisteredUsersId
+  }
+}
+subscription OnCreateAccessEvents($primaryUser: String) {
+  onCreateAccessEvents(primaryUser: $primaryUser) {
+    id
+    authUser {
+      id
+      displayName
+      verifiedImage
+      accOwner {
+        id
+        firstName
+        lastName
+        displayName
+        email
+        verifiedImage
+        FCMToken
+        createdAt
+        updatedAt
+        owner
+      }
+      createdAt
+      updatedAt
+      accountOwnerRegisteredUsersId
+    }
+    primaryUser {
+      id
+      firstName
+      lastName
+      displayName
+      email
+      verifiedImage
+      FCMToken
+      registeredUsers {
+        nextToken
+      }
+      events {
+        nextToken
+      }
+      createdAt
+      updatedAt
+      owner
+    }
+    createdAt
+    updatedAt
+    accountOwnerEventsId
+    accessEventsAuthUserId
+  }
+}
+subscription OnUpdateAccessEvents($primaryUser: String) {
+  onUpdateAccessEvents(primaryUser: $primaryUser) {
+    id
+    authUser {
+      id
+      displayName
+      verifiedImage
+      accOwner {
+        id
+        firstName
+        lastName
+        displayName
+        email
+        verifiedImage
+        FCMToken
+        createdAt
+        updatedAt
+        owner
+      }
+      createdAt
+      updatedAt
+      accountOwnerRegisteredUsersId
+    }
+    primaryUser {
+      id
+      firstName
+      lastName
+      displayName
+      email
+      verifiedImage
+      FCMToken
+      registeredUsers {
+        nextToken
+      }
+      events {
+        nextToken
+      }
+      createdAt
+      updatedAt
+      owner
+    }
+    createdAt
+    updatedAt
+    accountOwnerEventsId
+    accessEventsAuthUserId
+  }
+}
+subscription OnDeleteAccessEvents($primaryUser: String) {
+  onDeleteAccessEvents(primaryUser: $primaryUser) {
+    id
+    authUser {
+      id
+      displayName
+      verifiedImage
+      accOwner {
+        id
+        firstName
+        lastName
+        displayName
+        email
+        verifiedImage
+        FCMToken
+        createdAt
+        updatedAt
+        owner
+      }
+      createdAt
+      updatedAt
+      accountOwnerRegisteredUsersId
+    }
+    primaryUser {
+      id
+      firstName
+      lastName
+      displayName
+      email
+      verifiedImage
+      FCMToken
+      registeredUsers {
+        nextToken
+      }
+      events {
+        nextToken
+      }
+      createdAt
+      updatedAt
+      owner
+    }
+    createdAt
+    updatedAt
+    accountOwnerEventsId
+    accessEventsAuthUserId
   }
 }

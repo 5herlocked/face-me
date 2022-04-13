@@ -10,7 +10,6 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.key
 import com.amplifyframework.datastore.generated.model.RegisteredUser
-import com.faceme.faceme.model.Event
 
 @Composable
 fun HomeRoute(
@@ -30,7 +29,7 @@ fun HomeRoute(
         onRefreshEvents = { homeViewModel.refreshEvents() },
         onErrorDismiss = { homeViewModel.errorShown(it) },
         onInteractWithFeed = { homeViewModel.interactedWithFeed() },
-        onInteractWithEventDetails = { homeViewModel.interactWithEventDetails(it) },
+        onInteractWithEventDetails = { homeViewModel.interactWithUserDetails(it) },
         openDrawer = openDrawer,
         scaffoldState = scaffoldState
     )
@@ -114,6 +113,7 @@ private enum class HomeScreenType {
     Feed,
     UserDetails
 }
+
 @Composable
 private fun getHomeScreenType(
     expandedScreen: Boolean,

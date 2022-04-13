@@ -162,7 +162,7 @@ class HomeViewModel : ViewModel() {
         }
     }
 
-    fun interactWithEventDetails(userId: String) {
+    fun interactWithUserDetails(userId: String) {
         viewModelState.update {
             it.copy(
                 selectedUserId = userId,
