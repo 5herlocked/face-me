@@ -31,7 +31,7 @@ import androidx.compose.ui.unit.dp
 import com.amplifyframework.datastore.generated.model.AccountOwner
 import com.amplifyframework.datastore.generated.model.RegisteredUser
 import com.faceme.faceme.R
-import com.faceme.faceme.model.HomeScreenEvent
+import com.faceme.faceme.model.Event
 import com.faceme.faceme.ui.components.FaceMeSnackbarHost
 import com.faceme.faceme.ui.rememberContentPaddingForScreen
 import com.faceme.faceme.ui.theme.FaceMeTheme
@@ -64,8 +64,6 @@ fun HomeFeedWithUserDetailsScreen(
     HomeScreenWithList(
         uiState = uiState,
         showTopAppBar = showTopAppBar,
-        onApprove = onApprove,
-        onReject = onReject,
         onRefreshEvents = onRefreshEvents,
         onErrorDismiss = onErrorDismiss,
         openDrawer = openDrawer,
@@ -174,8 +172,6 @@ fun HomeFeedScreen(
     HomeScreenWithList(
         uiState = uiState,
         showTopAppBar = showTopAppBar,
-        onApprove = onApprove,
-        onReject = onReject,
         onRefreshEvents = onRefreshEvents,
         onErrorDismiss = onErrorDismiss,
         openDrawer = openDrawer,
@@ -199,7 +195,7 @@ fun HomeFeedScreen(
 
 @Composable
 fun EventUserList(
-    homeScreenEvent: HomeScreenEvent,
+    homeScreenEvent: Event.IncompleteEvent,
     onSelectUser: (String) -> Unit,
     onApprove: (String) -> Unit,
     onReject: (String) -> Unit,
@@ -241,7 +237,7 @@ fun UsersListSection(
     detectedUsers: List<RegisteredUser>,
     onApprove: (String) -> Unit,
     onReject: (String) -> Unit,
-    navigateToUser: (String) -> Unit
+    onSelectUser: (String) -> Unit
 ) {
     Column {
         detectedUsers.forEach { user ->
@@ -249,7 +245,7 @@ fun UsersListSection(
                 user,
                 onApprove,
                 onReject,
-                navigateToUser,
+                onSelectUser,
             )
             UserListDivider()
         }
@@ -269,7 +265,7 @@ fun DetectedUser(
     user: RegisteredUser,
     onApprove: (String) -> Unit,
     onReject: (String) -> Unit,
-    navigateToUser: (String) -> Unit,
+    onSelectUser: (String) -> Unit,
     modifier: Modifier = Modifier
 ) {
     Card(
@@ -280,7 +276,7 @@ fun DetectedUser(
     ) {
         Row(
             modifier = Modifier
-                .clickable(onClick = { navigateToUser(user.id) })
+                .clickable(onClick = { onSelectUser(user.id) })
                 .padding(8.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
@@ -330,8 +326,6 @@ fun DetectedUser(
 private fun HomeScreenWithList(
     uiState: HomeUiState,
     showTopAppBar: Boolean,
-    onApprove: (String) -> Unit,
-    onReject: (String) -> Unit,
     onRefreshEvents: () -> Unit,
     onErrorDismiss: (Long) -> Unit,
     openDrawer: () -> Unit,
@@ -516,8 +510,8 @@ fun PreviewHomeScreen() {
     FaceMeTheme {
         HomeFeedScreen(
             uiState = HomeUiState.HasEvents(
-                homeScreenEvent = HomeScreenEvent(
-                    media = media,
+                homeScreenEvent = Event.IncompleteEvent(
+                    id = "123456789",
                     detectedUsers = detectedUsers
                 ),
                 selectedUser = null,
