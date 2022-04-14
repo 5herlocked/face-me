@@ -5,8 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.amplifyframework.datastore.generated.model.RegisteredUser
 import com.faceme.faceme.R
-import com.faceme.faceme.model.EventsFeed
-import com.faceme.faceme.model.HomeScreenEvent
+import com.faceme.faceme.model.Event
 import com.faceme.faceme.utils.ErrorMessage
 import com.faceme.faceme.utils.Result
 
@@ -39,7 +38,7 @@ sealed interface HomeUiState {
      * There is guaranteed to be a [selectedEvent], which is one of the posts from [homeScreenEvent].
      */
     data class HasEvents(
-        val homeScreenEvent: HomeScreenEvent,
+        val homeScreenEvent: Event.IncompleteEvent,
         val selectedUser: RegisteredUser? = null,
         val isUserOpen: Boolean,
         override val isLoading: Boolean,
@@ -48,7 +47,7 @@ sealed interface HomeUiState {
 }
 
 private data class HomeViewModelState(
-    val homeScreenEvent: HomeScreenEvent? = null,
+    val homeScreenEvent: Event.IncompleteEvent? = null,
     val selectedUserId: String? = null,
     val isLoading: Boolean = false,
     val isUserOpen: Boolean = false,
@@ -97,7 +96,7 @@ class HomeViewModel : ViewModel() {
 
             viewModelState.update {
                 when(result) {
-                    is Result.Success<HomeScreenEvent> -> it.copy(
+                    is Result.Success<Event.IncompleteEvent> -> it.copy(
                         homeScreenEvent = result.data,
                         isLoading = false
                     )
@@ -113,7 +112,7 @@ class HomeViewModel : ViewModel() {
         }
     }
 
-    private fun getEvents(): Result<HomeScreenEvent> {
+    private fun getEvents(): Result<Event.IncompleteEvent> {
         TODO("Implement cloud call")
     }
 
