@@ -16,4 +16,5 @@
     <string name="cd_event_history">Navigate to Event History</string>
     <string name="cd_user_list">Navigate to User List</string>
     <string name="cd_navigate_to_settings">Navigate to Settings</string>
+    <string name="past_events">Past Events</string>
 </resources>
