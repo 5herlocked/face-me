@@ -54,9 +54,8 @@ fun EventHistoryRoute(
 
     when(eventHistoryScreenType) {
         EventHistoryScreenType.EventDetails -> {
-
             EventHistoryWithEventDetailsScreen(
-                uiState = uiState,
+                uiState = uiState as EventHistoryUiState.HasEvents,
                 eventHistoryLazyListState = eventHistoryLazyListState,
                 eventDetailLazyListStates = eventDetailLazyListStates,
                 showTopAppBar = !isExpandedScreen,

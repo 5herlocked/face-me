@@ -92,7 +92,7 @@ class HomeViewModel : ViewModel() {
         viewModelState.update { it.copy(isLoading = true) }
 
         viewModelScope.launch {
-            val result = getEvents()
+            val result = getEvent()
 
             viewModelState.update {
                 when(result) {
@@ -112,7 +112,7 @@ class HomeViewModel : ViewModel() {
         }
     }
 
-    private fun getEvents(): Result<Event.IncompleteEvent> {
+    fun getEvent(): Result<Event.IncompleteEvent> {
         TODO("Implement cloud call")
     }
 

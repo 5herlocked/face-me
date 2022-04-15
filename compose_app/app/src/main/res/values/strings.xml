@@ -17,4 +17,14 @@
     <string name="cd_user_list">Navigate to User List</string>
     <string name="cd_navigate_to_settings">Navigate to Settings</string>
     <string name="past_events">Past Events</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="display_name">Display Name</string>
+    <string name="verification_code">Verification Code</string>
+    <string name="verify">Verify</string>
+    <string name="close_registration_sheet">Close Registration Sheet</string>
 </resources>

@@ -54,6 +54,7 @@ fun EventHistoryWithEventDetailsScreen(
         showTopAppBar = showTopAppBar,
         onInteractWithHistory = onInteractWithHistory,
         onInteractWithEventDetails = onInteractWithEventDetails,
+        eventListLazyListState = eventHistoryLazyListState,
         openDrawer = openDrawer,
         scaffoldState = scaffoldState,
     ) {

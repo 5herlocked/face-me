@@ -56,7 +56,8 @@ fun FaceMeApp (
             gesturesEnabled = !isExpandedScreen
         ) {
             Row(
-                Modifier.fillMaxSize()
+                Modifier
+                    .fillMaxSize()
                     .statusBarsPadding()
                     .windowInsetsPadding(
                         WindowInsets.navigationBars.only(WindowInsetsSides.Horizontal + WindowInsetsSides.Top)
@@ -71,10 +72,16 @@ fun FaceMeApp (
                         navigateToSettings = navigationActions.navigateToSettings
                     )
                 }
+                FaceMeNavGraph(
+                    isExpandedScreen = isExpandedScreen,
+                    navController = navController,
+                    openDrawer = { coroutineScope.launch { sizeAwareDrawerState.open() } }
+                )
             }
         }
     }
 }
+
 
 /**
  * Determine the content padding to apply to the different screens of the app
