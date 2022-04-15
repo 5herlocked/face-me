@@ -1,8 +1,8 @@
 package com.faceme.faceme.model
 
 data class EventsFeed (
-    val selectedEvent: Event,
-    val allEvents: List<Event>
+    val selectedEvent: Event.CompletedEvent,
+    val allEvents: List<Event.CompletedEvent>
 ) {
 
 }
