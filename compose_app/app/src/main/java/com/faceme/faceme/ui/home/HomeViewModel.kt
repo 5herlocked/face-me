@@ -2,9 +2,11 @@ package com.faceme.faceme.ui.home
 
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.amplifyframework.datastore.generated.model.RegisteredUser
 import com.faceme.faceme.R
+import com.faceme.faceme.data.events.EventsRepository
 import com.faceme.faceme.model.Event
 import com.faceme.faceme.utils.ErrorMessage
 import com.faceme.faceme.utils.Result
@@ -67,13 +69,15 @@ private data class HomeViewModelState(
                 isUserOpen = isUserOpen,
                 selectedUser = homeScreenEvent.detectedUsers.find {
                     it.id == selectedUserId
-                }!!,
+                },
                 errorMessages = errorMessages
             )
         }
 }
 
-class HomeViewModel : ViewModel() {
+class HomeViewModel(
+    private val eventsRepository: EventsRepository
+) : ViewModel() {
     private val viewModelState = MutableStateFlow(HomeViewModelState(isLoading = true))
 
     val uiState = viewModelState
@@ -90,14 +94,12 @@ class HomeViewModel : ViewModel() {
 
     fun refreshEvents() {
         viewModelState.update { it.copy(isLoading = true) }
-
         viewModelScope.launch {
-            val result = getEvent()
-
+            val result = eventsRepository.getHomeScreenEvent()
             viewModelState.update {
-                when(result) {
-                    is Result.Success<Event.IncompleteEvent> -> it.copy(
-                        homeScreenEvent = result.data,
+                when (result) {
+                    is Result.Success -> it.copy(
+                        homeScreenEvent = result.data as Event.IncompleteEvent,
                         isLoading = false
                     )
                     is Result.Error -> {
@@ -109,12 +111,28 @@ class HomeViewModel : ViewModel() {
                     }
                 }
             }
+
+//            viewModelState.update {
+//                when(result) {
+//                    is Result.Success<Event.IncompleteEvent> -> it.copy(
+//                        homeScreenEvent = result.data,
+//                        isLoading = false
+//                    )
+//                    is Result.Error -> {
+//                        val errorMessages = it.errorMessages + ErrorMessage(
+//                            id = UUID.randomUUID().mostSignificantBits,
+//                            messageId = R.string.load_error
+//                        )
+//                        it.copy(errorMessages = errorMessages, isLoading = false)
+//                    }
+//                }
+//            }
         }
     }
 
-    fun getEvent(): Result<Event.IncompleteEvent> {
-        TODO("Implement cloud call")
-    }
+//    fun getEvent(): Result<Event.IncompleteEvent> {
+//        TODO("Implement cloud call")
+//    }
 
     /*
      * Approve entrance of a user
@@ -122,7 +140,7 @@ class HomeViewModel : ViewModel() {
     fun approveUser(userId: String) {
         viewModelScope.launch {
             // pass it to the method in Event
-            
+
         }
     }
 
@@ -167,6 +185,20 @@ class HomeViewModel : ViewModel() {
                 selectedUserId = userId,
                 isUserOpen = true
             )
+        }
+    }
+
+    /**
+     * Factory for HomeViewModel that takes PostsRepository as a dependency
+     */
+    companion object {
+        fun provideFactory(
+            eventsRepository: EventsRepository,
+        ): ViewModelProvider.Factory = object : ViewModelProvider.Factory {
+            @Suppress("UNCHECKED_CAST")
+            override fun <T : ViewModel> create(modelClass: Class<T>): T {
+                return HomeViewModel(eventsRepository) as T
+            }
         }
     }
 }

@@ -70,7 +70,7 @@ fun AppDrawer(
 
 @Preview
 @Composable
-private fun FaceMeLogo(modifier: Modifier = Modifier) {
+internal fun FaceMeLogo(modifier: Modifier = Modifier) {
     Row(modifier = modifier) {
         FaceMeIcon()
         Spacer(modifier = Modifier.width(8.dp))

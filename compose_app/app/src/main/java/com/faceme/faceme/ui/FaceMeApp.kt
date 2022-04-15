@@ -9,6 +9,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.faceme.faceme.data.AppContainer
 import com.faceme.faceme.ui.components.AppNavRail
 import com.faceme.faceme.ui.theme.FaceMeTheme
 import com.faceme.faceme.utils.WindowSize
@@ -17,7 +18,8 @@ import kotlinx.coroutines.launch
 
 @Composable
 fun FaceMeApp (
-    windowSize: WindowSize
+    windowSize: WindowSize,
+    appContainer: AppContainer
 ) {
     FaceMeTheme {
         val systemUiController = rememberSystemUiController()
@@ -73,6 +75,7 @@ fun FaceMeApp (
                     )
                 }
                 FaceMeNavGraph(
+                    appContainer = appContainer,
                     isExpandedScreen = isExpandedScreen,
                     navController = navController,
                     openDrawer = { coroutineScope.launch { sizeAwareDrawerState.open() } }

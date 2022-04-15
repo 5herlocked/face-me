@@ -27,7 +27,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
-import coil.compose.SubcomposeAsyncImage
 import coil.request.ImageRequest
 import com.amplifyframework.datastore.generated.model.AccountOwner
 import com.faceme.faceme.R
@@ -74,10 +73,10 @@ fun EventHistoryWithEventDetailsScreen(
             // Crossfade between different events
             Crossfade(targetState = hasEventsUiState.eventFeed.selectedEvent) { focusedEvent ->
                 val detailLazyListState by derivedStateOf {
-                    eventDetailLazyListStates.getValue(focusedEvent.id)
+                    eventDetailLazyListStates.getValue(focusedEvent!!.id)
                 }
 
-                key(focusedEvent.id) {
+                key(focusedEvent!!.id) {
                     LazyColumn(
                         state = detailLazyListState,
                         contentPadding = contentPadding,
@@ -253,6 +252,13 @@ fun EventHistory(
             // Time
 
             // Auth User
+            Text(
+                text = event.authUser.firstName,
+                style = MaterialTheme.typography.h6,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
+                textAlign = TextAlign.Center
+            )
         }
     }
 }
@@ -288,13 +294,13 @@ fun SingularEvent(
                 overflow = TextOverflow.Ellipsis,
                 textAlign = TextAlign.Center
             )
-            Text(
-                text = event.accessTime.toString(),
-                style = MaterialTheme.typography.subtitle2,
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis,
-                textAlign = TextAlign.Center
-            )
+//            Text(
+//                text = ,
+//                style = MaterialTheme.typography.subtitle2,
+//                maxLines = 1,
+//                overflow = TextOverflow.Ellipsis,
+//                textAlign = TextAlign.Center
+//            )
         }
     }
 }

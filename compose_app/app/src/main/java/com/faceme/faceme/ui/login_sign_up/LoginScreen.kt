@@ -56,6 +56,7 @@ fun LoginScreen(
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
+            FaceMeLogo()
             LoginForm(
                 uiState = loginViewModel.uiState.collectAsState().value as LoginRegisterUiState.IsLogin,
                 onUserNameChanged = { loginViewModel.onUserNameChanged(it) },

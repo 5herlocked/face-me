@@ -28,6 +28,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import coil.compose.AsyncImage
 import com.amplifyframework.datastore.generated.model.AccountOwner
 import com.amplifyframework.datastore.generated.model.RegisteredUser
 import com.faceme.faceme.R
@@ -210,6 +211,11 @@ fun EventUserList(
     ) {
         item {
             // camera feed or image here
+            AsyncImage(
+                model = homeScreenEvent.mediaURL,
+                contentDescription = "Picture from thing",
+                modifier = modifier.fillMaxWidth()
+            )
         }
 
         item {
@@ -512,6 +518,7 @@ fun PreviewHomeScreen() {
             uiState = HomeUiState.HasEvents(
                 homeScreenEvent = Event.IncompleteEvent(
                     id = "123456789",
+                    mediaURL = media,
                     detectedUsers = detectedUsers
                 ),
                 selectedUser = null,

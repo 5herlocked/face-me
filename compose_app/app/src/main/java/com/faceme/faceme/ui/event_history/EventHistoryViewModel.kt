@@ -1,8 +1,10 @@
 package com.faceme.faceme.ui.event_history
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.faceme.faceme.R
+import com.faceme.faceme.data.events.EventsRepository
 import com.faceme.faceme.model.Event
 import com.faceme.faceme.model.EventsFeed
 import com.faceme.faceme.utils.ErrorMessage
@@ -51,7 +53,7 @@ private data class EventHistoryViewModelState (
                 eventFeed,
                 selectedEvent = eventFeed.allEvents.find {
                     it.id == selectedEventId
-                }!!,
+                },
                 isEventOpen,
                 isLoading,
                 errorMessages
@@ -59,7 +61,9 @@ private data class EventHistoryViewModelState (
         }
 }
 
-class EventHistoryViewModel : ViewModel() {
+class EventHistoryViewModel (
+    private val eventsRepository: EventsRepository
+) : ViewModel() {
     private val viewModelState = MutableStateFlow(EventHistoryViewModelState( isLoading = true))
 
     val uiState = viewModelState.map { it.toUiState() }
@@ -75,14 +79,15 @@ class EventHistoryViewModel : ViewModel() {
 
     fun refreshEvents() {
         viewModelState.update { it.copy(isLoading = true) }
-
         viewModelScope.launch {
-            val result = getEvents()
-
+            val result = eventsRepository.getEventsFeed()
             viewModelState.update {
-                when(result) {
-                    is Result.Success<EventsFeed> -> it.copy(
-                        eventFeed = result.data,
+                when (result) {
+                    is Result.Success -> it.copy(
+                        eventFeed = EventsFeed(
+                            allEvents = result.data as List<Event.CompletedEvent>,
+                            selectedEvent = null
+                        ),
                         isLoading = false
                     )
                     is Result.Error -> {
@@ -129,6 +134,20 @@ class EventHistoryViewModel : ViewModel() {
         viewModelState.update { currentUiState ->
             val errorMessages = currentUiState.errorMessages.filterNot { it.id == errorId }
             currentUiState.copy(errorMessages = errorMessages)
+        }
+    }
+
+    /**
+     * Factory for HomeViewModel that takes PostsRepository as a dependency
+     */
+    companion object {
+        fun provideFactory(
+            eventsRepository: EventsRepository,
+        ): ViewModelProvider.Factory = object : ViewModelProvider.Factory {
+            @Suppress("UNCHECKED_CAST")
+            override fun <T : ViewModel> create(modelClass: Class<T>): T {
+                return EventHistoryViewModel(eventsRepository) as T
+            }
         }
     }
 }
